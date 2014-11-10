@@ -595,12 +595,12 @@
 	
 		table
 		{
-			width: 100%;
+			width: 50%;
 		}
 		
 			table.default
 			{
-				width: 100%;
+				width: 50%;
 			}
 
 				table.default tr

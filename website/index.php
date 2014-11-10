@@ -26,8 +26,8 @@ session_start();
 <header id="header">
   <div class="logo container">
     <div>
-      <h1><a href="index.html" id="logo">The Monkey Bank of America</a></h1>
-      <p>by The Monkey Coders</p>
+      <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
+      <p>by CS157A</p>
     </div>
   </div>
 </header>
@@ -36,30 +36,15 @@ session_start();
 <nav id="nav" class="skel-layers-fixed">
   <ul>
     <li class="current"><a href="index.php">Home</a></li>
-    <li> <a href="">Dropdown</a>
-      <ul>
-        <li><a href="#">Lorem ipsum dolor</a></li>
-        <li><a href="#">Magna phasellus</a></li>
-        <li> <a href="">Phasellus consequat</a>
-          <ul>
-            <li><a href="#">Lorem ipsum dolor</a></li>
-            <li><a href="#">Phasellus consequat</a></li>
-            <li><a href="#">Magna phasellus</a></li>
-            <li><a href="#">Etiam dolore nisl</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Veroeros feugiat</a></li>
-      </ul>
-    </li>
-    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-    <li><a href="no-sidebar.html">No Sidebar</a></li>
+    <li><a href="#">Checking Accounts</a></li>
+    <li><a href="#">Savings Accounts</a></li>
+    <li><a href="#">Monkey Loans</a></li>
     <?php
 						if(isset($_SESSION['id'])) {
 							echo "<li><a href=\"user.php?id=".$_SESSION['id']."\">Profile</a></li>";
 							echo "<li><a href=\"logout.php\">Log Out</a></li>";
 						} else {
-							echo "<li><a href=\"login.php\">Login</a></li>";
+							echo "<li><a href=\"login.html\">Login</a></li>";
 							echo "<li><a href=\"register.php\">Register</a></li>";
 						}
 					?>
@@ -72,10 +57,10 @@ session_start();
     <h2>Welcome to the Monkey Bank of America Website</h2>
     <p>Here you can do anything with your account including withdraw money, deposit money and create new accounts!</p>
     <?php
-						if(isset($_SESSION['id'])) {
-							echo "<a href=\"user.php?id=".$_SESSION['id']."class=button\">View my Account</a>";
+						if(isset($_SESSION['uID'])) {
+							echo "<a href=\"user.php?id=".$_SESSION['uID']."class=button\">View my Account</a>";
 						} else {
-							echo "<a href=\"login.php\" class=\"button\">Login</a>";
+							echo "<a href=\"login.html\" class=\"button\">Login</a>";
 							echo "<a href=\"register.php\" class=\"button\">Register</a>";
 						}
 					?>
@@ -154,7 +139,7 @@ session_start();
 						if(isset($_SESSION['id'])) {
 							echo "<li><a href=\"user.php?id=".$_SESSION['id']."class=button\">View my Account</a></li>";
 						} else {
-							echo "<li><a href=\"login.php\" class=\"button\">Login!</a></li>";
+							echo "<li><a href=\"login.html\" class=\"button\">Login!</a></li>";
 							echo "<li><a href=\"register.php\" class=\"button\">Sign Up for an Account!</a></li>";
 						}
 					?>
@@ -188,7 +173,7 @@ session_start();
   <!-- Copyright -->
   <div id="copyright">
     <ul class="menu">
-      <li>&copy; The Monkey Coders. All rights reserved</li>
+      <li>&copy; CS157A. All rights reserved</li>
     </ul>
   </div>
 </footer>
