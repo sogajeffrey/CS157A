@@ -1,32 +1,27 @@
 <?php
 	session_start();
-	$sucess = false;
-	if(isset($_SESSION['uID'])) {
-		header("location: user.php?uID".$_SESSION['uID']);
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	$message = "";
+	//include("connect.php");
+	$conn = mysql_connect("localhost","root","secret123");
+    mysql_select_db("codemonkeys",$conn);
+	$result = mysql_query("SELECT uID FROM customerinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+	$row  = mysql_fetch_array($result);
+	if(is_array($row)) {
+	$_SESSION["uID"] = $row[uID];	
+	//$_SESSION["aID"] = $row[accountID];
+	header("Location:user.php");
+	} 
+	else 
+	{
+		$message = "Invalid Username or Password!";
 	}
-	$uid = "";
-	$error = "";
-	$redirect = "";
-	if($_SERVER["REQUEST_METHOD"] == "POST") {
-		$uID = $_POST['username'];
-		$pass = $_POST['password'];
-		if(strlen($_POST['password']) > 0) {
-			require_once('includes/connect.php');
-			$sql = "CALL 'loginCustomer'($uID, $pass)";
-			$raw_results = $mysqli->query($sql);
-			if(mysqli_num_rows($raw_results) == 0) {
-				$error = "Login Failed due to incorrect Username or Password...Please try again";
-				$sucess = false;
-			} else {
-				while($row = mysqli_fetch_array($raw_results)) {
-						$_SESSION['uID']=$row['uID'];
-						$redirect = "<script>$(document).ready(function() {document.location = 'user.php?uID=".$row['uID']."'	});</script>";
-						$sucess = true;
-					 
-				}
-			}
-		} 
+	if(isset($_SESSION["uID"])) 
+	{
+	header("Location:user.php");
 	}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -85,16 +80,32 @@
 <!-- Main -->
 <section id="main" class="container small">
   <header>
-    <h2>Login Results</h2>
+    <h2>Login to the Monkey Bank</h2>
   </header>
-  <?php
-		if ($sucess = false)
-		{
-		  echo "<ul class=\"actions\"><li><a href=\"login.php\" class=\"button\">Try Again</a></li></ul>";
-		}
-		else 
-		  echo $redirect;
-	?>
+  <div class="box">
+    <form method=post action="login.php">
+      <div class="row uniform half collapse-at-2">
+        <div class="6u">
+          <input type="text" name="username" placeholder="Username" />
+        </div>
+        <div class="6u">
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+      </div>
+      <div class="message">
+        <?php if($message!="") { echo $message; } ?>
+      </div>
+      <div class="row uniform">
+        <div class="12u">
+          <ul class="actions align-center">
+            <li>
+              <input type="submit" value="Login" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
 
 <!-- Footer -->

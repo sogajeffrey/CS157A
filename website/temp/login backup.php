@@ -1,3 +1,36 @@
+<?php
+	ob_start();
+	session_start();
+	$sucess = false;
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	if(isset($_SESSION['uID'])) {
+		header("location: user.php?uID".$_SESSION['uID']);
+	}
+	$uid = "";
+	$error = "";
+	$redirect = "";
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		$uID = $_POST['username'];
+		$pass = $_POST['password'];
+		if(strlen($_POST['password']) > 0) {
+			require_once('includes/connect.php');
+			$sql = "CALL 'loginCustomer'($uID, $pass)";
+			$raw_results = $mysqli->query($sql);
+			if(mysqli_num_rows($raw_results) == 0) {
+				$error = "Login Failed due to incorrect Username or Password...Please try again";
+				$sucess = false;
+			} else {
+				while($row = mysqli_fetch_array($raw_results)) {
+						$_SESSION['uID']=$row['uID'];
+						$redirect = "<script>$(document).ready(function() {document.location = 'user.php?uID=".$row['uID']."'	});</script>";
+						$sucess = true;
+					 
+				}
+			}
+		} 
+	}
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,29 +88,16 @@
 <!-- Main -->
 <section id="main" class="container small">
   <header>
-    <h2>Login to the Moneky Bank</h2>
+    <h2>Login Results</h2>
   </header>
-  <div class="box">
-    <form method=post action="login.php">
-      <div class="row uniform half collapse-at-2">
-        <div class="6u">
-          <input type="text" name="username" placeholder="Username" />
-        </div>
-        <div class="6u">
-          <input type="text" name="password" placeholder="Password" />
-        </div>
-      </div>
-      <div class="row uniform">
-        <div class="12u">
-          <ul class="actions align-center">
-            <li>
-              <input type="submit" value="Login" />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </form>
-  </div>
+  <?php
+		if ($sucess = false)
+		{
+		  echo "<ul class=\"actions\"><li><a href=\"login.php\" class=\"button\">Try Again</a></li></ul>";
+		}
+		else 
+		  echo $redirect;
+	?>
 </section>
 
 <!-- Footer -->

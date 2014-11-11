@@ -1,8 +1,5 @@
 <?php
 	session_start();	
-	if(!isset($_GET['uID']) && !isset($_SESSION['uID'])) {
-		header('location: index.php');
-	}
 	
 	if(isset($_SESSION['uID'])) {
 		$uid = $_SESSION['uID'];

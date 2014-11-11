@@ -1,6 +1,6 @@
 <?php
 session_start();
-	require_once('connect.php');
+include('connect.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -40,11 +40,11 @@ session_start();
     <li><a href="#">Savings Accounts</a></li>
     <li><a href="#">Monkey Loans</a></li>
     <?php
-						if(isset($_SESSION['id'])) {
-							echo "<li><a href=\"user.php?id=".$_SESSION['id']."\">Profile</a></li>";
+						if(isset($_SESSION['uID'])) {
+							echo "<li><a href=\"user.php?id=".$_SESSION['uID']."\">Profile</a></li>";
 							echo "<li><a href=\"logout.php\">Log Out</a></li>";
 						} else {
-							echo "<li><a href=\"login.html\">Login</a></li>";
+							echo "<li><a href=\"login.php\">Login</a></li>";
 							echo "<li><a href=\"register.php\">Register</a></li>";
 						}
 					?>
@@ -60,7 +60,7 @@ session_start();
 						if(isset($_SESSION['uID'])) {
 							echo "<a href=\"user.php?id=".$_SESSION['uID']."class=button\">View my Account</a>";
 						} else {
-							echo "<a href=\"login.html\" class=\"button\">Login</a>";
+							echo "<a href=\"login.php\" class=\"button\">Login</a>";
 							echo "<a href=\"register.php\" class=\"button\">Register</a>";
 						}
 					?>
@@ -137,9 +137,9 @@ session_start();
                 <ul class="actions">
                   <?php
 						if(isset($_SESSION['id'])) {
-							echo "<li><a href=\"user.php?id=".$_SESSION['id']."class=button\">View my Account</a></li>";
+							echo "<li><a href=\"user.php?id=".$_SESSION['uID']."class=button\">View my Account</a></li>";
 						} else {
-							echo "<li><a href=\"login.html\" class=\"button\">Login!</a></li>";
+							echo "<li><a href=\"login.php\" class=\"button\">Login!</a></li>";
 							echo "<li><a href=\"register.php\" class=\"button\">Sign Up for an Account!</a></li>";
 						}
 					?>
