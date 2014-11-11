@@ -2,7 +2,7 @@
 	session_start();
 	include("connect.php");
 	if(!isset($_SESSION['uID'])) {
-		header("Location:index.php");
+		header("Location:login.php");
 	} 		
 	if(isset($_SESSION['uID'])) {
 		$uID = $_SESSION['uID'];
@@ -134,6 +134,11 @@
 			}
 			
 			?>
+              <header>
+              <h2>Account Settings</h2> 
+              <p>Make changes to your Account here</p>
+              <ul class="actions"> <li><a href="passchange.php" class="button large">Change Password</a></li></ul>
+            </header>
           </article>
         </div>
       </div>

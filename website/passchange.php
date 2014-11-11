@@ -1,3 +1,9 @@
+<?php 
+session_start();
+	if(!isset($_SESSION['uID'])) {
+		header("Location:login.php");
+	} 
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,24 +37,18 @@
 <nav id="nav" class="skel-layers-fixed">
   <ul>
     <li class="current"><a href="index.php">Home</a></li>
-    <li> <a href="">Dropdown</a>
-      <ul>
-        <li><a href="#">Lorem ipsum dolor</a></li>
-        <li><a href="#">Magna phasellus</a></li>
-        <li> <a href="">Phasellus consequat</a>
-          <ul>
-            <li><a href="#">Lorem ipsum dolor</a></li>
-            <li><a href="#">Phasellus consequat</a></li>
-            <li><a href="#">Magna phasellus</a></li>
-            <li><a href="#">Etiam dolore nisl</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Veroeros feugiat</a></li>
-      </ul>
-    </li>
-    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-    <li><a href="no-sidebar.html">No Sidebar</a></li>
+    <li><a href="#">Checking Accounts</a></li>
+    <li><a href="#">Savings Accounts</a></li>
+    <li><a href="#">Monkey Loans</a></li>
+    <?php
+						if(isset($_SESSION['uID'])) {
+							echo "<li><a href=\"user.php\">Profile</a></li>";
+							echo "<li><a href=\"logout.php\">Log Out</a></li>";
+						} else {
+							echo "<li><a href=\"login.php\">Login</a></li>";
+							echo "<li><a href=\"register.php\">Register</a></li>";
+						}
+					?>
   </ul>
 </nav>
 
@@ -56,6 +56,7 @@
 <section id="main" class="container small">
   <header>
     <h2>Change your password</h2>
+    <p>You must enter your old password and enter your new password twice.</p>
   </header>
   <div class="box">
     <form method=post action="passchangedone.php">
