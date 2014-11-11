@@ -3,9 +3,7 @@
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$message = "";
-	//include("connect.php");
-	$conn = mysql_connect("localhost","root","secret123");
-    mysql_select_db("codemonkeys",$conn);
+	include("connect.php");
 	$result = mysql_query("SELECT uID FROM customerinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) {

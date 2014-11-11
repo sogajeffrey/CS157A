@@ -41,7 +41,7 @@ include('connect.php');
     <li><a href="#">Monkey Loans</a></li>
     <?php
 						if(isset($_SESSION['uID'])) {
-							echo "<li><a href=\"user.php?id=".$_SESSION['uID']."\">Profile</a></li>";
+							echo "<li><a href=\"user.php\">Profile</a></li>";
 							echo "<li><a href=\"logout.php\">Log Out</a></li>";
 						} else {
 							echo "<li><a href=\"login.php\">Login</a></li>";
@@ -58,7 +58,7 @@ include('connect.php');
     <p>Here you can do anything with your account including withdraw money, deposit money and create new accounts!</p>
     <?php
 						if(isset($_SESSION['uID'])) {
-							echo "<a href=\"user.php?id=".$_SESSION['uID']."class=button\">View my Account</a>";
+							echo "<a href=\"user.php\" class=\"button\">View My Account</a>";
 						} else {
 							echo "<a href=\"login.php\" class=\"button\">Login</a>";
 							echo "<a href=\"register.php\" class=\"button\">Register</a>";
@@ -136,8 +136,8 @@ include('connect.php');
               <div class="12u">
                 <ul class="actions">
                   <?php
-						if(isset($_SESSION['id'])) {
-							echo "<li><a href=\"user.php?id=".$_SESSION['uID']."class=button\">View my Account</a></li>";
+						if(isset($_SESSION['uID'])) {
+							echo "<li><a href=\"user.php\" class=\"button\">View My Account</a></li>";
 						} else {
 							echo "<li><a href=\"login.php\" class=\"button\">Login!</a></li>";
 							echo "<li><a href=\"register.php\" class=\"button\">Sign Up for an Account!</a></li>";
