@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	if(isset($_POST["username"]))
+	{ 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$message = "";
@@ -14,7 +16,8 @@
 	} 
 	if(!is_array($row)) 
 	{
-		//$message = "Invalid Username or Password!";
+		$message = "Invalid Username or Password!";
+	}
 	}
 	if(isset($_SESSION["uID"])) 
 	{
