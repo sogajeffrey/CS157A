@@ -33,24 +33,7 @@ session_start();
   </div>
 </header>
 
-<!-- Nav -->
-<nav id="nav" class="skel-layers-fixed">
-  <ul>
-    <li class="current"><a href="index.php">Home</a></li>
-    <li><a href="#">Checking Accounts</a></li>
-    <li><a href="#">Savings Accounts</a></li>
-    <li><a href="#">Monkey Loans</a></li>
-    <?php
-						if(isset($_SESSION['uID'])) {
-							echo "<li><a href=\"user.php\">Profile</a></li>";
-							echo "<li><a href=\"logout.php\">Log Out</a></li>";
-						} else {
-							echo "<li><a href=\"login.php\">Login</a></li>";
-							echo "<li><a href=\"register.php\">Register</a></li>";
-						}
-					?>
-  </ul>
-</nav>
+<?php include('nav.php'); ?>
 
 <!-- Main -->
 <section id="main" class="container small">
