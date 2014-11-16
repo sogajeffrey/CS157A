@@ -79,11 +79,11 @@
 					$bal = $row['balance'];
     				}							
 	
-            echo "<section>";
-              echo "<h3>Checking Account</h3>";
-              echo "<h4>Balance:</h4> $bal";
-              echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
-            echo "</section>";
+            echo "<header>";
+			  echo "<h3>Checking Account</h3>";
+              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
+			  echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
+            echo "</header>";
 			}
 			if($save == 1)
 			{
@@ -93,12 +93,11 @@
 					{
 					$bal = $row['balance'];
     				}
-	
-			  echo "<section>";
-              echo "<h3>Savings Account</h3>";
-              echo "<h4>Balance:</h4> $bal ";
-              echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
-            echo "</section>";
+			echo "<header>";
+			  echo "<h3>Savings Account</h3>";
+              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
+			  echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
+            echo "</header>";
 			}
 			if($loan == 1){
 				$result = mysql_query("SELECT amount FROM loan WHERE accountID = '$aID'");
