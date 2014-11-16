@@ -1,25 +1,6 @@
 <?php
 	session_start();
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$message = "";
 	include("connect.php");
-	$result = mysql_query("SELECT uID FROM customerinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
-	$row  = mysql_fetch_array($result);
-	
-	if(is_array($row)) {
-	$_SESSION["uID"] = $row[uID];	
-	//$_SESSION["aID"] = $row[accountID];
-	header("Location:user.php");
-	} 
-	if(!is_array($row)) 
-	{
-		//$message = "Invalid Username or Password!";
-	}
-	if(isset($_SESSION["uID"])) 
-	{
-	header("Location:user.php");
-	}
 
 ?>
 <!DOCTYPE HTML>
@@ -88,7 +69,7 @@
                     </div>
                     <div class="row uniform half collapse-at-2">
                         <div class="6u">
-                            <input name="age" placeholder="Age" required type="text">
+                            <input name="age" placeholder="Age" required min="15" type="text">
                         </div>
                         <div class ="6u">
                             <input type="text" name="ssn" placeholder="Social Security Number" required>
@@ -108,7 +89,7 @@
 <!-- Footer -->
 <footer id="footer">
   <ul class="copyright">
-    <li>&copy; Jeffrey Su. All rights reserved.</li>
+    <li>&copy; Code Monkeys. All rights reserved.</li>
   </ul>
 </footer>
 </body>

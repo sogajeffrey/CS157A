@@ -156,7 +156,7 @@ include('connect.php');
   <!-- Copyright -->
   <div id="copyright">
     <ul class="menu">
-      <li>&copy; CS157A. All rights reserved</li>
+      <li>&copy; Code Monkeys. All rights reserved</li>
     </ul>
   </div>
 </footer>

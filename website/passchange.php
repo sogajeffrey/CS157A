@@ -74,7 +74,7 @@ session_start();
 <!-- Footer -->
 <footer id="footer">
   <ul class="copyright">
-    <li>&copy; Jeffrey Su. All rights reserved.</li>
+    <li>&copy; Code Monkeys. All rights reserved.</li>
   </ul>
 </footer>
 </body>

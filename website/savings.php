@@ -82,7 +82,7 @@
             echo "<section>";
               echo "<h3>Checking Account</h3>";
               echo "<h4>Balance:</h4> $bal";
-              echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
+              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Checking Account</a></li></ul>";
             echo "</section>";
 			}
 			if($save == 1)
@@ -97,7 +97,7 @@
 			  echo "<section>";
               echo "<h3>Savings Account</h3>";
               echo "<h4>Balance:</h4> $bal ";
-              echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
+              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Savings Account</a></li></ul>";
             echo "</section>";
 			}
 			if($loan == 1){
@@ -112,7 +112,7 @@
               echo "<h3>Loan</h3>";
               echo "<h4>Amount Owed:</h4> $bal";
 			  //echo "<h4>Due by:</h4>";
-              echo "<ul class=\"actions\"> <li><a href=\"loans.php\" class=\"button medium\">View Loan</a></li></ul>";
+              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Loan</a></li></ul>";
             echo "</section>";
 			}
 			
