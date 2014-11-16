@@ -6,6 +6,7 @@
 	include("connect.php");
 	$result = mysql_query("SELECT uID FROM customerinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
 	$row  = mysql_fetch_array($result);
+	
 	if(is_array($row)) {
 	$_SESSION["uID"] = $row[uID];	
 	//$_SESSION["aID"] = $row[accountID];
