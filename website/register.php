@@ -1,7 +1,21 @@
 <?php
 	session_start();
 	include("connect.php");
-
+	if(isset($_POST['name']))
+	{
+		$name = $_POST['name'];
+		$uID = $_POST['uID'];
+		$_SESSION['uID'] = $uID;
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+		$pass = $_POST['password'];
+		$age = $_POST['age'];
+		$ssn = $_POST['ssn'];
+		
+		$sql = "SET @p0='$name'; SET @p1='$uID'; SET @p2='$email'; SET @p3='$phone'; SET @p4='$pass'; SET @p5='$age'; SET @p6='$ssn'; CALL `createNewCustomer`(@p0, @p1, @p2, @p3, @p4, @p5, @p6);";
+		mysql_query($sql);
+		header("Location:user.php");
+	}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -41,7 +55,7 @@
                 <p>Upon registration you will be able to enjoy the many features Monkey Bank has to offer :) </p>
             </header>
             <div class="box">
-                <form method="post" action="registration.php">
+                <form method="post" action="register.php">
                     <div class="row uniform half collapse-at-2">
                         <div class="6u">
                             <input id="name" name="name" placeholder="Name" required="" tabindex="1" type="text" required>
@@ -55,7 +69,7 @@
                             <input type="email" name="email" id="email" value="" placeholder="Email Address" required>
                         </div>
                         <div class="6u">
-                            <input id="phone" name="phone" placeholder="Phone Number" required type="text">
+                            <input id="phone" name="phone" placeholder="Phone Number" required type="text" required>
                         </div>
 
                     </div>

@@ -73,70 +73,8 @@ include('connect.php');
         </section>
       </div>
     </div>
-    <div class="row 200%">
-      <div class="12u"> 
-        
-        <!-- Features -->
-        <section class="box features">
-          <h2 class="major"><span>What can you do on this site?</span></h2>
-          <div>
-            <h1> Coming Soon </h1>
-            <div class="row">
-              <div class="3u"> 
-                
-                <!-- Feature -->
-                <section class="box feature"> <a href="#" class="image featured"><img src="" alt="" /></a>
-                  <h3><a href="#"></a></h3>
-                  <p> </p>
-                </section>
-              </div>
-              <div class="3u"> 
-                
-                <!-- Feature -->
-                <section class="box feature"> <a href="#" class="image featured"><img src="" alt="" /></a>
-                  <h3><a href="#"></a></h3>
-                  <p> </p>
-                </section>
-              </div>
-              <div class="3u"> 
-                
-                <!-- Feature -->
-                <section class="box feature"> <a href="#" class="image featured"><img src="" alt="" /></a>
-                  <h3><a href="#"></a></h3>
-                  <p> </p>
-                </section>
-              </div>
-              <div class="3u"> 
-                
-                <!-- Feature -->
-                <section class="box feature"> <a href="#" class="image featured"><img src="" alt="" /></a>
-                  <h3><a href="#"></a></h3>
-                  <p> </p>
-                </section>
-              </div>
-            </div>
-            <div class="row">
-              <div class="12u">
-                <ul class="actions">
-                  <?php
-						if(isset($_SESSION['uID'])) {
-							echo "<li><a href=\"user.php\" class=\"button\">View My Account</a></li>";
-						} else {
-							echo "<li><a href=\"login.php\" class=\"button\">Login!</a></li>";
-							echo "<li><a href=\"register.php\" class=\"button\">Sign Up for an Account!</a></li>";
-						}
-					?>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-    <div class="row 200%">
-      <div class="12u"> </div>
-    </div>
+
+
   </div>
 </div>
 

@@ -17,6 +17,33 @@
 		$loan = $row['hasLoan'];
     }
 	
+	if (isset($_GET['action'])) 
+	{
+    	$action = $_GET['action'];
+		
+		if($action = "w")
+		{
+			$amount = $_POST['wamt'];
+			mysql_query("UPDATE checkingaccount SET balance = balance-$amount WHERE accountID = $aID");
+			header("Location:checking.php");
+		}
+		if($action = "d")
+		{
+			$amount = $_POST['damt'];
+			mysql_query("UPDATE checkingaccount SET balance = balance+$amount WHERE accountID = $aID");
+			header("Location:checking.php");
+		}
+		if($action = "t")
+		{
+			$amount = $_POST['tamt'];
+			mysql_query("UPDATE checkingaccount SET balance = balance-$amount WHERE accountID = $aID");
+			mysql_query("UPDATE savingsaccount SET balance = balance+$amount WHERE accountID = $aID");
+			header("Location:checking.php");
+		}
+	
+	}
+	
+	
 	$result = mysql_query("SELECT balance FROM checkingaccount WHERE accountID = '$aID'");
 					$row  = mysql_fetch_array($result);
 					if(is_array($row)) 
@@ -84,7 +111,7 @@
           <header> 
 			  <h3>Options</h3>
           </header>  
-       <form method=post action="waction.php">
+       <form method=post action="checking.php?action=w">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="wamt" placeholder="Withdraw Amount" />
@@ -98,7 +125,7 @@
         </div>
       </div>
     </form>
-    <form method=post action="daction.php">
+    <form method=post action="checking.php?action=d">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="damt" placeholder="Deposit Amount" />
@@ -115,7 +142,7 @@
     <?php
     if($save == 1)
 			{
-				echo "<form method=post action=\"transferaction.php\">";
+				echo "<form method=post action=\"checking.php?action=t\">";
       echo "<div class=\"row uniform half collapse-at-2\">";
         echo "<div class=\"6u\"> <input type=\"text\" name=\"tamt\" placeholder=\"Transfer to your Savings Account\" /> </div>";
         echo "<div class=\"6u\"> <ul class=\"actions align-center\"> <li>";

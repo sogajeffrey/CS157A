@@ -7,7 +7,6 @@
 	if(isset($_SESSION['uID'])) {
 		$uID = $_SESSION['uID'];
 	} 
-	
 	$result = mysql_query("SELECT accountID, hasChecking, hasSavings, hasLoan FROM customer_account_link WHERE uID = '$uID'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) 
@@ -18,6 +17,39 @@
 		$loan = $row['hasLoan'];
     }
 	
+	if (isset($_GET['action'])) 
+	{
+    	$action = $_GET['action'];
+		
+		if($action = "w")
+		{
+			$amount = $_POST['wamt'];
+			mysql_query("UPDATE Savingsaccount SET balance = balance-$amount WHERE accountID = $aID");
+			header("Location:Savings.php");
+		}
+		if($action = "d")
+		{
+			$amount = $_POST['damt'];
+			mysql_query("UPDATE Savingsaccount SET balance = balance+$amount WHERE accountID = $aID");
+			header("Location:Savings.php");
+		}
+		if($action = "t")
+		{
+			$amount = $_POST['tamt'];
+			mysql_query("UPDATE Savingsaccount SET balance = balance-$amount WHERE accountID = $aID");
+			mysql_query("UPDATE checkingsaccount SET balance = balance+$amount WHERE accountID = $aID");
+			header("Location:Savings.php");
+		}
+	
+	}
+	
+	
+	$result = mysql_query("SELECT balance FROM Savingsaccount WHERE accountID = '$aID'");
+					$row  = mysql_fetch_array($result);
+					if(is_array($row)) 
+					{
+					$bal = $row['balance'];
+    				}
 	$result = mysql_query("SELECT name FROM customerinfo WHERE uID = '$uID'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) 
@@ -27,7 +59,7 @@
 	
 			
 ?><head>
-<title>Account Overview</title>
+<title>Savings Account </title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -67,61 +99,57 @@
           
           <article class="box page-content">
             <header> 
-			<?php echo "<h2> Welcome $name </h2> " ?>
-              <p>Here you can see all your accounts and information about each one.</p>
+			  <h2> Your Savings Account</h2>
+              <p>Here you can view your balance, withdraw money, deposit money and more!</p>
             </header>
-            <?php
-			if($check == 1){
-					$result = mysql_query("SELECT balance FROM checkingaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}							
+            <?php					
 	
-            echo "<section>";
-              echo "<h3>Checking Account</h3>";
-              echo "<h4>Balance:</h4> $bal";
-              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Checking Account</a></li></ul>";
-            echo "</section>";
-			}
-			if($save == 1)
-			{
-				$result = mysql_query("SELECT balance FROM savingsaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}
-	
-			  echo "<section>";
-              echo "<h3>Savings Account</h3>";
-              echo "<h4>Balance:</h4> $bal ";
-              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Savings Account</a></li></ul>";
-            echo "</section>";
-			}
-			if($loan == 1){
-				$result = mysql_query("SELECT amount FROM loan WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['amount'];
-    				}
-            echo "</section>";
-			  echo "<section>";
-              echo "<h3>Loan</h3>";
-              echo "<h4>Amount Owed:</h4> $bal";
-			  //echo "<h4>Due by:</h4>";
-              echo "<ul class=\"actions\"> <li><a href=\"#\" class=\"button medium\">View Loan</a></li></ul>";
-            echo "</section>";
-			}
-			
+            echo "<header>";
+              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
+            echo "</header>";
 			?>
-              <header>
-              <h2>Account Settings</h2> 
-              <p>Make changes to your Account here</p>
-              <ul class="actions"> <li><a href="passchange.php" class="button large">Change Password</a></li></ul>
-            </header>
+          <header> 
+			  <h3>Options</h3>
+          </header>  
+       <form method=post action="Savings.php?action=w">
+      <div class="row uniform half collapse-at-2">
+        <div class="6u">
+          <input type="text" name="wamt" placeholder="Withdraw Amount" />
+        </div>
+        <div class="6u">
+          <ul class="actions align-center">
+            <li>
+              <input type="submit" value="Withdraw" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+    <form method=post action="Savings.php?action=d">
+      <div class="row uniform half collapse-at-2">
+        <div class="6u">
+          <input type="text" name="damt" placeholder="Deposit Amount" />
+        </div>
+        <div class="6u">
+          <ul class="actions align-center">
+            <li>
+              <input type="submit" value="Deposit" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+    <?php
+    if($save == 1)
+			{
+				echo "<form method=post action=\"Savings.php?action=t\">";
+      echo "<div class=\"row uniform half collapse-at-2\">";
+        echo "<div class=\"6u\"> <input type=\"text\" name=\"tamt\" placeholder=\"Transfer to your Checking Account\" /> </div>";
+        echo "<div class=\"6u\"> <ul class=\"actions align-center\"> <li>";
+         echo "<input type=\"submit\" value=\"Transfer\" /> </li></ul></div></div></form>";
+			} 
+			?>
+         <ul class="actions"> <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
           </article>
         </div>
       </div>

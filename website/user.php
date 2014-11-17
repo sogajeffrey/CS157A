@@ -68,7 +68,7 @@
           <article class="box page-content">
             <header> 
 			<?php echo "<h2> Welcome $name </h2> " ?>
-              <p>Here you can see all your accounts and information about each one.</p>
+              <p>Here you can see all your bank accounts and information about each one.</p>
             </header>
             <?php
 			if($check == 1){
@@ -100,19 +100,20 @@
             echo "</header>";
 			}
 			if($loan == 1){
-				$result = mysql_query("SELECT amount FROM loan WHERE accountID = '$aID'");
+				$result = mysql_query("SELECT amount, dueDate FROM loan WHERE accountID = '$aID'");
 					$row  = mysql_fetch_array($result);
 					if(is_array($row)) 
 					{
 					$bal = $row['amount'];
+					$due = $row['dueDate'];
     				}
-            echo "</section>";
-			  echo "<section>";
+            
+			  echo "<header>";
               echo "<h3>Loan</h3>";
-              echo "<h4>Amount Owed:</h4> $bal";
-			  //echo "<h4>Due by:</h4>";
+              echo "<h3>Amount Owed:</h3><p> $bal Monkey Bucks </p>";
+			  echo "<h3>Due by: $due</h3>";
               echo "<ul class=\"actions\"> <li><a href=\"loans.php\" class=\"button medium\">View Loan</a></li></ul>";
-            echo "</section>";
+            echo "</header>";
 			}
 			
 			?>
