@@ -37,7 +37,7 @@
 		{
 			$amount = $_POST['tamt'];
 			mysql_query("UPDATE Savingsaccount SET balance = balance-$amount WHERE accountID = $aID");
-			mysql_query("UPDATE checkingsaccount SET balance = balance+$amount WHERE accountID = $aID");
+			mysql_query("UPDATE checkingaccount SET balance = balance+$amount WHERE accountID = $aID");
 			header("Location:Savings.php");
 		}
 	

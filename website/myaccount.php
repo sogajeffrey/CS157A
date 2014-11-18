@@ -18,16 +18,20 @@
 		$loan = $row['hasLoan'];
     }
 	
-	$result = mysql_query("SELECT name FROM customerinfo WHERE uID = '$uID'");
+	$result = mysql_query("SELECT name, age, email, phoneNumber FROM customerinfo WHERE uID = '$uID'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) 
 	{
 		$name = $row['name'];
+		$age = $row['age'];
+		$email = $row['email'];
+		$phone = $row['phoneNumber'];
     }
+	
 	
 			
 ?><head>
-<title>Account Overview</title>
+<title>My Account</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -68,55 +72,25 @@
           <article class="box page-content">
             <header> 
 			<?php echo "<h2> Welcome $name </h2> " ?>
-              <p>Here you can see all your bank accounts and information about each one.</p>
+              <p>Here you can see your account information and update if needed</p>
             </header>
-            <?php
-			if($check == 1){
-					$result = mysql_query("SELECT balance FROM checkingaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}							
-	
-            echo "<header>";
-			  echo "<h3>Checking Account</h3>";
-              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
-			  echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
-            echo "</header>";
-			}
-			if($save == 1)
-			{
-				$result = mysql_query("SELECT balance FROM savingsaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}
-			echo "<header>";
-			  echo "<h3>Savings Account</h3>";
-              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
-			  echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
-            echo "</header>";
-			}
-			if($loan == 1){
-				$result = mysql_query("SELECT amount, dueDate FROM loan WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['amount'];
-					$due = $row['dueDate'];
-    				}
-            
-			  echo "<header>";
-              echo "<h3>Loan</h3>";
-              echo "<h3>Amount Owed:</h3><p> $bal Monkey Bucks </p>";
-			  echo "<h3>Due by: $due</h3>";
-              echo "<ul class=\"actions\"> <li><a href=\"loans.php\" class=\"button medium\">View Loan</a></li></ul>";
-            echo "</header>";
-			}
-			
-			?>
+            <header> 
+			<?php echo "<h3> Email: </h2> <p> $email </p> " ?>
+            </header>
+             <header> 
+			<?php echo "<h3> Age: </h2> <p> $age </p> " ?>
+            </header>
+             <header> 
+			<?php echo "<h3> Phone Number: </h2> <p> $phone </p> " ?>
+            </header>
+              <header>
+              <h2>Account Settings</h2> 
+              <p>Make changes to your Account here</p>
+              <ul class="actions"> <li><a href="namechange.php" class="button large">Update your Name</a></li></ul>
+              <ul class="actions"> <li><a href="phonechange.php" class="button large">Update your Phone Number</a></li></ul>
+              <ul class="actions"> <li><a href="emailchange.php" class="button large">Update Email Address</a></li></ul>
+              <ul class="actions"> <li><a href="passchange.php" class="button large">Change Password</a></li></ul>
+            </header>
           </article>
         </div>
       </div>

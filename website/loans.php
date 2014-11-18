@@ -21,16 +21,25 @@
 	{
     	$action = $_GET['action'];
 		
-		if($action = "w")
+		if($action = "ca")
 		{
-			$amount = $_POST['wamt'];
-			mysql_query("UPDATE loan SET balance = balance-$amount WHERE accountID = $aID");
+			$amount = $_POST['camt'];
+			mysql_query("UPDATE loan SET amount = amount-$amount WHERE accountID = $aID");
 			header("Location:loan.php");
 		}
-		if($action = "d")
+		
+		if($action = "c")
 		{
-			$amount = $_POST['damt'];
-			mysql_query("UPDATE loan SET balance = balance+$amount WHERE accountID = $aID");
+			$amount = $_POST['camt'];
+			mysql_query("UPDATE loan SET amount = amount-$amount WHERE accountID = $aID");
+			mysql_query("UPDATE checkingaccount SET balance = balance-$amount WHERE accountID = $aID");
+			header("Location:loan.php");
+		}
+		if($action = "s")
+		{
+			$amount = $_POST['samt'];
+			mysql_query("UPDATE loan SET amount = amount-$amount WHERE accountID = $aID");
+			mysql_query("UPDATE savingsaccount SET balance = balance-$amount WHERE accountID = $aID");
 			header("Location:loan.php");
 		}
 		
@@ -110,29 +119,43 @@
           <header> 
 			  <h3>Options</h3>
           </header>  
-       <form method=post action="loan.php?action=w">
+       <form method=post action="loan.php?action=ca">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
-          <input type="text" name="wamt" placeholder="Withdraw Amount" />
+          <input type="text" name="chamt" placeholder="Pay off With Cash" />
         </div>
         <div class="6u">
           <ul class="actions align-center">
             <li>
-              <input type="submit" value="Withdraw" />
+              <input type="submit" value="Pay" />
             </li>
           </ul>
         </div>
       </div>
     </form>
-    <form method=post action="loan.php?action=d">
+       <form method=post action="loan.php?action=c">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
-          <input type="text" name="damt" placeholder="Deposit Amount" />
+          <input type="text" name="camt" placeholder="Pay with Checking Account" />
         </div>
         <div class="6u">
           <ul class="actions align-center">
             <li>
-              <input type="submit" value="Deposit" />
+              <input type="submit" value="Pay" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+    <form method=post action="loan.php?action=s">
+      <div class="row uniform half collapse-at-2">
+        <div class="6u">
+          <input type="text" name="samt" placeholder="Pay with Savings Account" />
+        </div>
+        <div class="6u">
+          <ul class="actions align-center">
+            <li>
+              <input type="submit" value="Pay" />
             </li>
           </ul>
         </div>

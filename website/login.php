@@ -48,7 +48,7 @@
 <header id="header">
   <div class="logo container">
     <div>
-      <h1><a href="index.html" id="logo">The Monkey Bank of America</a></h1>
+      <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
       <p>by The Monkey Coders</p>
     </div>
   </div>
