@@ -50,7 +50,7 @@
 					{
 					$bal = $row['balance'];
     				}
-	$result = mysql_query("SELECT name FROM customerinfo WHERE uID = '$uID'");
+	$result = mysql_query("SELECT name FROM userinfo WHERE uID = '$uID'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) 
 	{

@@ -1,7 +1,44 @@
+<?php
+	session_start();
+	if(isset($_SESSION['uID'])) {
+		$uID = $_SESSION['uID'];
+	} 
+	if(isset($_POST["username"]))
+	{ 
+	$message = "";
+	include("connect.php");
+	$result = mysql_query("SELECT uID FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+	$row  = mysql_fetch_array($result);
+	if(is_array($row)) {
+	$result1 = mysql_query("SELECT hasLoan from customer_account_link where uID = '$uID'");
+	$row1  = mysql_fetch_array($result1);
+	if(is_array($row1))
+	{
+		if($row1['hasLoan'] == 0)
+		{
+			mysql_query("DELETE from userinfo where uID = '$uID'");
+			unset($_SESSION["uID"]);
+			unset($_SESSION["type"]);
+			header("Location:index.php");
+
+		}
+		else 
+		{
+			$message = "Please pay off your loan before closing your account";
+		}
+	}
+	} 
+	else
+	{
+		$message = "Please enter your username and password correctly in order to delete your account";
+	}
+	}
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Login Monkey Bank of America</title>
+<title>Delete your Account</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -21,44 +58,22 @@
 <header id="header">
   <div class="logo container">
     <div>
-      <h1><a href="index.html" id="logo">The Monkey Bank of America</a></h1>
+      <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
       <p>by The Monkey Coders</p>
     </div>
   </div>
 </header>
 
-<!-- Nav -->
-<nav id="nav" class="skel-layers-fixed">
-  <ul>
-    <li class="current"><a href="index.php">Home</a></li>
-    <li> <a href="">Dropdown</a>
-      <ul>
-        <li><a href="#">Lorem ipsum dolor</a></li>
-        <li><a href="#">Magna phasellus</a></li>
-        <li> <a href="">Phasellus consequat</a>
-          <ul>
-            <li><a href="#">Lorem ipsum dolor</a></li>
-            <li><a href="#">Phasellus consequat</a></li>
-            <li><a href="#">Magna phasellus</a></li>
-            <li><a href="#">Etiam dolore nisl</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Veroeros feugiat</a></li>
-      </ul>
-    </li>
-    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-    <li><a href="no-sidebar.html">No Sidebar</a></li>
-  </ul>
-</nav>
+<?php include('nav.php'); ?>
 
 <!-- Main -->
 <section id="main" class="container small">
   <header>
-    <h2>Login to the Moneky Bank</h2>
+    <h2>Delete your Monkey Bank Account</h2>
+    <p>Please verify your username and password to delete your account </p>
   </header>
   <div class="box">
-    <form method=post action="login.php">
+    <form method=post action="deleteaccount.php">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="username" placeholder="Username" />
@@ -67,11 +82,14 @@
           <input type="password" name="password" placeholder="Password" />
         </div>
       </div>
+      <div class="message">
+        <?php if($message!="") { echo $message; } ?>
+      </div>
       <div class="row uniform">
         <div class="12u">
           <ul class="actions align-center">
             <li>
-              <input type="submit" value="Login" />
+              <input type="submit" value="Submit" />
             </li>
           </ul>
         </div>
@@ -83,7 +101,7 @@
 <!-- Footer -->
 <footer id="footer">
   <ul class="copyright">
-    <li>&copy; Jeffrey Su. All rights reserved.</li>
+    <li>&copy; Code Monkeys. All rights reserved.</li>
   </ul>
 </footer>
 </body>

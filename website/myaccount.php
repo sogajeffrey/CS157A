@@ -18,7 +18,7 @@
 		$loan = $row['hasLoan'];
     }
 	
-	$result = mysql_query("SELECT name, age, email, phoneNumber FROM customerinfo WHERE uID = '$uID'");
+	$result = mysql_query("SELECT name, age, email, phoneNumber FROM userinfo WHERE uID = '$uID'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) 
 	{
@@ -86,10 +86,14 @@
               <header>
               <h2>Account Settings</h2> 
               <p>Make changes to your Account here</p>
-              <ul class="actions"> <li><a href="namechange.php" class="button large">Update your Name</a></li></ul>
-              <ul class="actions"> <li><a href="phonechange.php" class="button large">Update your Phone Number</a></li></ul>
-              <ul class="actions"> <li><a href="emailchange.php" class="button large">Update Email Address</a></li></ul>
-              <ul class="actions"> <li><a href="passchange.php" class="button large">Change Password</a></li></ul>
+              <ul class="actions"> 
+              	<li><a href="namechange.php" class="button large">Update your Name</a></li>
+                <li><a href="phonechange.php" class="button large">Update your Phone Number</a></li>
+                <li><a href="emailchange.php" class="button large">Update Email Address</a></li>
+                <li><a href="passchange.php" class="button large">Change Password</a></li>
+                </ul>
+                <ul class="actions"><li><a href="deleteaccount.php" class="button large">DELETE YOUR ACCOUNT</a></li></ul>
+               
             </header>
           </article>
         </div>

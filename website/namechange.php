@@ -3,11 +3,18 @@ session_start();
 	if(!isset($_SESSION['uID'])) {
 		header("Location:login.php");
 	} 
+     $uID = $_SESSION['uID'];
+	include("connect.php");
+    if(isset($_POST["newname"]))
+    {
+	mysql_query("UPDATE userinfo SET name = '". $_POST["newname"]."' WHERE uID='$uID'");
+	header("Location:myaccount.php");
+	}
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Password Change</title>
+<title>Name Change</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -38,8 +45,8 @@ session_start();
 <!-- Main -->
 <section id="main" class="container small">
   <header>
-    <h2>Change your password</h2>
-    <p>You must enter your old password and enter your new password twice.</p>
+    <h2>Change your Name</h2>
+    <p>You must enter your old name and enter your new name twice.</p>
   </header>
   <div class="box">
     <form method=post action="passchangedone.php">
@@ -47,13 +54,13 @@ session_start();
         <div class="12u">
           <ul >
             <li>
-              <input type="password" name="passwordold" placeholder="Old Password" >
+              <input type="text" name="nameold" placeholder="Old name" >
             </li>
             <li>
-              <input type="password" name="newpass1" placeholder="New password" >
+              <input type="text" name="newname" placeholder="New name" >
             </li>
             <li>
-              <input type="password" name="newpass2" placeholder="Confirm your new password">
+              <input type="text" name="newname2" placeholder="Confirm your new name">
             </li>
           </ul>
         </div>
@@ -62,7 +69,7 @@ session_start();
         <div class="12u">
           <ul class="actions align-center">
             <li>
-              <input type="submit" value="Change Password" />
+              <input type="submit" value="Change name" />
             </li>
           </ul>
         </div>

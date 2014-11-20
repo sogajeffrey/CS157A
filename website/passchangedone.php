@@ -5,7 +5,7 @@ session_start();
 	} 
      $uID = $_SESSION['uID'];
 	include("connect.php");
-	$result = mysql_query("UPDATE customerinfo SET password = '". $_POST["newpass1"]."' WHERE uID='$uID'  and password = '". $_POST["passwordold"]."'");
+	$result = mysql_query("UPDATE userinfo SET password = '". $_POST["newpass1"]."' WHERE uID='$uID'  and password = '". $_POST["passwordold"]."'");
 	
 	header("Location:index.php");	
 ?>

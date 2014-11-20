@@ -1,10 +1,11 @@
-<?php
-	session_start();
-	if(isset($_POST["username"]))
+<?php 
+session_start();
+	if(!isset($_SESSION['uID'])) {
+		header("Location:login.php");
+	} 
+	if(isset($_POST["emailold"]))
 	{ 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$message = "";
+	$newemail = $_POST['email1'];
 	include("connect.php");
 	$result = mysql_query("SELECT uID, type FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
 	$row  = mysql_fetch_array($result);
@@ -20,24 +21,11 @@
 		$message = "Invalid Username or Password!";
 	}
 	}
-	if(isset($_SESSION["uID"])) 
-	{
-		if ($_SESSION["type"] == "Customer")
-		{
-			header("Location:user.php");
-		}
-		else 
-		{
-			header("Location:manager.php");
-		}
-		
-	}
-
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Login Monkey Bank of America</title>
+<title>Email Change</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -57,7 +45,7 @@
 <header id="header">
   <div class="logo container">
     <div>
-      <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
+      <h1><a href="index.html" id="logo">The Monkey Bank of America</a></h1>
       <p>by The Monkey Coders</p>
     </div>
   </div>
@@ -68,26 +56,31 @@
 <!-- Main -->
 <section id="main" class="container small">
   <header>
-    <h2>Login to the Monkey Bank</h2>
+    <h2>Change your Email Address</h2>
+    <p>You must enter your old email and enter your new email twice.</p>
   </header>
   <div class="box">
-    <form method=post action="login.php">
-      <div class="row uniform half collapse-at-2">
-        <div class="6u">
-          <input type="text" name="username" placeholder="Username" />
+    <form method=post action="emailchange.php">
+      <div class="row uniform">
+        <div class="12u">
+          <ul >
+            <li>
+              <input type="text" name="emailold" placeholder="Old Email" >
+            </li>
+            <li>
+              <input type="text" name="email1" placeholder="New Email" >
+            </li>
+            <li>
+              <input type="text" name="email2" placeholder="Confirm your new email">
+            </li>
+          </ul>
         </div>
-        <div class="6u">
-          <input type="password" name="password" placeholder="Password" />
-        </div>
-      </div>
-      <div class="message">
-        <?php if($message!="") { echo $message; } ?>
       </div>
       <div class="row uniform">
         <div class="12u">
           <ul class="actions align-center">
             <li>
-              <input type="submit" value="Login" />
+              <input type="submit" value="Change Email" />
             </li>
           </ul>
         </div>

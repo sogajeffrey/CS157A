@@ -27,7 +27,7 @@
 	
 			
 ?><head>
-<title>Account Overview</title>
+<title>Manager Portal</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -67,54 +67,11 @@
           
           <article class="box page-content">
             <header> 
-			<?php echo "<h2> Welcome $name </h2> " ?>
-              <p>Here you can see all your bank accounts and information about each one.</p>
+			<?php echo "<h2> Welcome Manager $name </h2> " ?>
+              <p>Use this page to check for customers information and archive entries.</p>
             </header>
             <?php
-			if($check == 1){
-					$result = mysql_query("SELECT balance FROM checkingaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}							
-	
-            echo "<header>";
-			  echo "<h3>Checking Account</h3>";
-              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
-			  echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
-            echo "</header>";
-			}
-			if($save == 1)
-			{
-				$result = mysql_query("SELECT balance FROM savingsaccount WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['balance'];
-    				}
-			echo "<header>";
-			  echo "<h3>Savings Account</h3>";
-              echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
-			  echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
-            echo "</header>";
-			}
-			if($loan == 1){
-				$result = mysql_query("SELECT amount, dueDate FROM loan WHERE accountID = '$aID'");
-					$row  = mysql_fetch_array($result);
-					if(is_array($row)) 
-					{
-					$bal = $row['amount'];
-					$due = $row['dueDate'];
-    				}
-            
-			  echo "<header>";
-              echo "<h3>Loan</h3>";
-              echo "<h3>Amount Owed:</h3><p> $bal Monkey Bucks </p>";
-			  echo "<h3>Due by: $due</h3>";
-              echo "<ul class=\"actions\"> <li><a href=\"loans.php\" class=\"button medium\">View Loan</a></li></ul>";
-            echo "</header>";
-			}
+			
 			
 			?>
           </article>

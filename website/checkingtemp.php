@@ -90,56 +90,70 @@
 
 <!-- Main -->
 <div id="main-wrapper">
-  <div id="main" class="container">
-    <div class="row">
-      <div class="12u">
-        <div class="content"> 
-          
-          <!-- Content -->
-          
-          <article class="box page-content">
-            <header>
-              <h2> Your Checking Account</h2>
-              <p>Here you can view your balance, withdraw money, deposit money and more!</p>
-            </header>
-            <?php					
+<div id="main" class="container">
+<div class="row">
+<div class="12u">
+<div class="content">
+
+<!-- Content -->
+
+<article class="box page-content">
+<header>
+  <h2> Your Checking Account</h2>
+  <p>Here you can view your balance, withdraw money, deposit money and more!</p>
+</header>
+<?php					
 	
             echo "<header>";
               echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
             echo "</header>";
 			?>
-            <header>
-              <h3>Options</h3>
-            </header>
-            <form method=post action="checking.php?action=w">
-              <div class="row uniform half collapse-at-2">
-                <div class="6u">
-                  <input type="text" name="wamt" placeholder="Withdraw Amount" />
-                </div>
-                <div class="6u">
-                  <ul class="actions align-center">
-                    <li>
-                      <input type="submit" value="Withdraw" />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </form>
-            <form method=post action="checking.php?action=d">
-              <div class="row uniform half collapse-at-2">
-                <div class="6u">
-                  <input type="text" name="damt" placeholder="Deposit Amount" />
-                </div>
-                <div class="6u">
-                  <ul class="actions align-center">
-                    <li>
-                      <input type="submit" value="Deposit" />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </form>
-            <?php
+<table cellspacing="0" width="100%">
+<thead>
+  <tr>
+    <th>Video Link</th>
+    <th>Video Title</a></th>
+    <th>Video Length</a></th>
+    <th>Highest Resolution</a></th>
+    <th>Video Description</a></th>
+    <th>Language</a></th>
+    <th>View Count</a></th>
+    <th>Video Type</a></th>
+    <th>Tag</a></th>
+  </tr>
+</thead>
+<header>
+  <h3>Options</h3>
+</header>
+<form method=post action="checking.php?action=w">
+  <div class="row uniform half collapse-at-2">
+    <div class="6u">
+      <input type="text" name="wamt" placeholder="Withdraw Amount" />
+    </div>
+    <div class="6u">
+      <ul class="actions align-center">
+        <li>
+          <input type="submit" value="Withdraw" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<form method=post action="checking.php?action=d">
+  <div class="row uniform half collapse-at-2">
+    <div class="6u">
+      <input type="text" name="damt" placeholder="Deposit Amount" />
+    </div>
+    <div class="6u">
+      <ul class="actions align-center">
+        <li>
+          <input type="submit" value="Deposit" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<?php
     if($save == 1)
 			{
 				echo "<form method=post action=\"checking.php?action=t\">";
@@ -149,14 +163,14 @@
          echo "<input type=\"submit\" value=\"Transfer\" /> </li></ul></div></div></form>";
 			} 
 			?>
-            <ul class="actions">
-              <li><a href="user.php" class="button large">Go Back to Account Overview</a></li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
+<ul class="actions">
+  <li><a href="user.php" class="button large">Go Back to Account Overview</a></li>
+</ul>
+</article>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
