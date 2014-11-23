@@ -1,6 +1,12 @@
 <?php
 	session_start();
-	include("connect.php");
+	include("dbconnect.php");
+	
+	if(isset($_SESSION['uID']))
+	{
+		header("user.php");
+	}
+	
 	if(isset($_POST['name']))
 	{
 		$name = $_POST['name'];
@@ -11,9 +17,10 @@
 		$pass = $_POST['password'];
 		$age = $_POST['age'];
 		$ssn = $_POST['ssn'];
+	$stmt = $mysqli->prepare("CALL createNewCustomer(?)");
+		$stmt -> bind_param('$name', '$uID', '$email', '$phone', '$pass', '$age', '$ssn');
+		$stmt->execute(); 	
 		
-		$sql = "SET @p0='$name'; SET @p1='$uID'; SET @p2='$email'; SET @p3='$phone'; SET @p4='$pass'; SET @p5='$age'; SET @p6='$ssn'; CALL `createNewCustomer`(@p0, @p1, @p2, @p3, @p4, @p5, @p6);";
-		mysql_query($sql);
 		header("Location:user.php");
 	}
 ?>

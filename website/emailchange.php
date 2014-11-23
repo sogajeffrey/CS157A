@@ -3,23 +3,12 @@ session_start();
 	if(!isset($_SESSION['uID'])) {
 		header("Location:login.php");
 	} 
-	if(isset($_POST["emailold"]))
-	{ 
-	$newemail = $_POST['email1'];
+	$uID = $_SESSION['uID'];
 	include("connect.php");
-	$result = mysql_query("SELECT uID, type FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
-	$row  = mysql_fetch_array($result);
-	
-	if(is_array($row)) {
-	$_SESSION["uID"] = $row[uID];
-	$_SESSION["type"] = $row[type];	
-	//$_SESSION["aID"] = $row[accountID];
-	header("Location:user.php");
-	} 
-	if(!is_array($row)) 
-	{
-		$message = "Invalid Username or Password!";
-	}
+    if(isset($_POST["email1"]))
+    {
+	mysql_query("UPDATE userinfo SET email = '". $_POST["email1"]."' WHERE uID='$uID'");
+	header("Location:myaccount.php");
 	}
 ?>
 <!DOCTYPE HTML>

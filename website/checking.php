@@ -58,8 +58,7 @@
     }
 	
 			
-?>
-<head>
+?><head>
 <title>Checking Account</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
@@ -69,6 +68,7 @@
 <script src="js/skel.min.js"></script>
 <script src="js/skel-layers.min.js"></script>
 <script src="js/init.js"></script>
+
 <noscript>
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/style.css" />
@@ -150,6 +150,7 @@
 			} 
 			?>
             <ul class="actions">
+              <li><a href="activitytable.php?type=Checking" class="button large">View Checking Account Activity</a></li>
               <li><a href="user.php" class="button large">Go Back to Account Overview</a></li>
             </ul>
           </article>

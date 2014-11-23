@@ -49,7 +49,7 @@ session_start();
     <p>You must enter your old name and enter your new name twice.</p>
   </header>
   <div class="box">
-    <form method=post action="passchangedone.php">
+    <form method=post action="namechange.php">
       <div class="row uniform">
         <div class="12u">
           <ul >

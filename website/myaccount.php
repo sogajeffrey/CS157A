@@ -92,7 +92,10 @@
                 <li><a href="emailchange.php" class="button large">Update Email Address</a></li>
                 <li><a href="passchange.php" class="button large">Change Password</a></li>
                 </ul>
-                <ul class="actions"><li><a href="deleteaccount.php" class="button large">DELETE YOUR ACCOUNT</a></li></ul>
+                <ul class="actions">
+                <li><a href="feedback.php" class="button large">Give us Feedback</a></li>
+                <li><a href="deleteaccount.php" class="button large">DELETE YOUR ACCOUNT</a></li>
+                </ul>
                
             </header>
           </article>

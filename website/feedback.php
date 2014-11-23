@@ -8,6 +8,13 @@ include('connect.php');
 	{
 		header("Location:login.php");
 	}
+	
+	if(isset($_POST["message"]))
+	{ 
+	$content = $_POST["message"];
+	mysql_query("INSERT INTO customercomplaints (uID, message) VALUES ('$uID', '$content')");
+	header("Location:myaccount.php");
+	}
 ?>
 
 <!DOCTYPE HTML>
@@ -47,7 +54,7 @@ include('connect.php');
     <p>Feel free to give a complaint or compliemnt. We read every single one and do our best to improve our operations.</p>
   </header>
   <div class="box">
-    <form method="post" action="addfeedback.php">
+    <form method="post" action="feedback.php">
       <div class="row uniform half">
         <div class="12u">
           <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>

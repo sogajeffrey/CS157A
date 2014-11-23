@@ -6,13 +6,19 @@
 	$password = $_POST['password'];
 	$message = "";
 	include("connect.php");
+	$result = mysql_query("SELECT accountID customer_account_link WHERE uID = '$uID'");
+	$row  = mysql_fetch_array($result);
+	if(is_array($row)) 
+	{
+		$aID = $row['accountID'];
+    }
 	$result = mysql_query("SELECT uID, type FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
 	$row  = mysql_fetch_array($result);
 	
 	if(is_array($row)) {
 	$_SESSION["uID"] = $row[uID];
 	$_SESSION["type"] = $row[type];	
-	//$_SESSION["aID"] = $row[accountID];
+	$_SESSION["aID"] = $aID;
 	header("Location:user.php");
 	} 
 	if(!is_array($row)) 
