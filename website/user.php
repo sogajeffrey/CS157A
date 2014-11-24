@@ -16,6 +16,10 @@
 		$check = $row['hasChecking'];
 		$save = $row['hasSavings'];
 		$loan = $row['hasLoan'];
+		if($check == 0 && $save == 0)
+		{
+			header("Location:newaccount.php");
+		}
     }
 	
 	$result = mysql_query("SELECT name FROM userinfo WHERE uID = '$uID'");
@@ -85,6 +89,10 @@
 			  echo "<ul class=\"actions\"> <li><a href=\"checking.php\" class=\"button medium\">View Checking Account</a></li></ul>";
             echo "</header>";
 			}
+			if($check==0)
+			{
+				echo "<ul class=\"actions\"> <li><a href=\"newaccount.php\" class=\"button medium\">Sign Up for a Checking Account</a></li></ul>";
+			}
 			if($save == 1)
 			{
 				$result = mysql_query("SELECT balance FROM savingsaccount WHERE accountID = '$aID'");
@@ -98,6 +106,10 @@
               echo "<h3>Balance:</h3> <p> $bal Monkey Bucks </p>";
 			  echo "<ul class=\"actions\"> <li><a href=\"savings.php\" class=\"button medium\">View Savings Account</a></li></ul>";
             echo "</header>";
+			}
+			if($save==0)
+			{
+				echo "<ul class=\"actions\"> <li><a href=\"newaccount.php\" class=\"button medium\">Sign Up for a Savings Account</a></li></ul>";
 			}
 			if($loan == 1){
 				$result = mysql_query("SELECT amount, dueDate FROM loan WHERE accountID = '$aID'");
@@ -114,6 +126,11 @@
 			  echo "<h3>Due by: $due</h3>";
               echo "<ul class=\"actions\"> <li><a href=\"loans.php\" class=\"button medium\">View Loan</a></li></ul>";
             echo "</header>";
+			}
+			if($loan == 0)
+			{
+			 echo "<ul class=\"actions\"> <li><a href=\"newloan.php\" class=\"button medium\">Take out a Loan</a></li></ul>";
+
 			}
 			
 			?>

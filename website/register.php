@@ -12,16 +12,21 @@
 		$name = $_POST['name'];
 		$uID = $_POST['uID'];
 		$_SESSION['uID'] = $uID;
+		$_SESSION['type'] = "Customer";
 		$email = $_POST['email'];
 		$phone = $_POST['phone'];
 		$pass = $_POST['password'];
 		$age = $_POST['age'];
 		$ssn = $_POST['ssn'];
-	$stmt = $mysqli->prepare("CALL createNewCustomer(?)");
-		$stmt -> bind_param('$name', '$uID', '$email', '$phone', '$pass', '$age', '$ssn');
-		$stmt->execute(); 	
-		
-		header("Location:user.php");
+	//$stmt = $mysqli->prepare("CALL createNewCustomer(?)");
+		//$stmt -> bind_param('$name', '$uID', '$email', '$phone', '$pass', '$age', '$ssn');
+		//$stmt->execute(); 	
+		//mysql_query("INSERT INTO userinfo (uID, password, name, age, email, ssn, phoneNumber, type) VALUES ('$uID', '$pass', '$age', '$email', '$ssn', '$phone', 'Customer')");
+		$query = "INSERT INTO userinfo "
+                ." (`uID`, `password`, `name`, `age`, `email`, `ssn`, `phoneNumber`) VALUES "
+                ."('$uID', '$pass', '$name', '$age', '$email', '$ssn', '$phone')";
+		mysqli_query($conn2, $query);
+		header("Location:newaccount.php");
 	}
 ?>
 <!DOCTYPE HTML>

@@ -4,8 +4,8 @@ session_start();
 	echo "<nav id=\"nav\" class=\"skel-layers-fixed\"><ul>";
     echo "<li class=\"current\"><a href=\"index.php\">Home</a></li>";
     echo "<li><a href=\"CheckingAccounts.php\">Monkey Checking</a></li>";
-    echo "<li><a href=\"#\">Monkey Savings</a></li>";
-    echo "<li><a href=\"#\">Monkey Loans</a></li>";
+    echo "<li><a href=\"SavingsAccounts.php\">Monkey Savings</a></li>";
+    echo "<li><a href=\"LoanAccounts.php\">Monkey Loans</a></li>";
 						if(isset($_SESSION['uID'])) {
 							if($_SESSION["type"] == "Customer")
 							{

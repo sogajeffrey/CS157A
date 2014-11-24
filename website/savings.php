@@ -149,7 +149,9 @@
          echo "<input type=\"submit\" value=\"Transfer\" /> </li></ul></div></div></form>";
 			} 
 			?>
-         <ul class="actions"> <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
+         <ul class="actions"> 
+         <li><a href="activitytable.php?type=Savings" class="button large">View Savings Account Activity</a></li>
+         <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
           </article>
         </div>
       </div>

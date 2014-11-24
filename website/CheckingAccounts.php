@@ -1,6 +1,16 @@
 <?php
 session_start();
 include('connect.php');
+$result = mysql_query("SELECT hasChecking FROM customer_account_link WHERE uID = '$uID'");
+	$row  = mysql_fetch_array($result);
+	if(is_array($row)) 
+	{
+		$check = $row['hasChecking'];
+		if($check == 1)
+		{
+			header("Location:checking.php");
+		}
+    }
 ?>
 
 <!DOCTYPE HTML>

@@ -119,7 +119,7 @@
           <header> 
 			  <h3>Options</h3>
           </header>  
-       <form method=post action="loan.php?action=ca">
+       <form method=post action="loans.php?action=ca">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="chamt" placeholder="Pay off With Cash" />
@@ -133,7 +133,7 @@
         </div>
       </div>
     </form>
-       <form method=post action="loan.php?action=c">
+       <form method=post action="loans.php?action=c">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="camt" placeholder="Pay with Checking Account" />
@@ -147,7 +147,7 @@
         </div>
       </div>
     </form>
-    <form method=post action="loan.php?action=s">
+    <form method=post action="loans.php?action=s">
       <div class="row uniform half collapse-at-2">
         <div class="6u">
           <input type="text" name="samt" placeholder="Pay with Savings Account" />
@@ -161,7 +161,9 @@
         </div>
       </div>
     </form>
-         <ul class="actions"> <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
+         <ul class="actions">
+        <li><a href="activitytable.php?type=Loan" class="button large">View Loan Activity</a></li> 
+         <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
           </article>
         </div>
       </div>

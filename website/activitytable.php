@@ -4,10 +4,10 @@ $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("dbconnect.php");
 $type = $_GET['type'];
-$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '13' and type = 'Checking'")
-//$sql = $mysqli_query($conn2, "CALL getAccountActivity('$aID', '$accounttype')");
+$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '$aID' and type = '$type'")
+//$sql = $mysqli_query($conn2, "CALL getAccountActivity('13', 'Checking')");
 //$sql = $mysqli_prepare($conn2, 'CALL getAccountActivity(?,?)');
-//mysqli_stmt_bind_param($sql, 'is', $aID, $accounttype);
+//mysqli_stmt_bind_param($sql, 'is', 13, "Checking");
 //mysqli_stmt_execute($sql);
 //mysqli_stmt_close($sql);
 //$result = mysqli_get_result($sql);
@@ -47,7 +47,7 @@ $sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbala
         <div class="content">
           <article class="box page-content">
             <header>
-              <h2> Your <?php echo $accounttype ?> Account Activity</h2>
+              <h2> Your <?php echo $type ?> Account Activity</h2>
             </header>
             <section id="main" class="container large">
               <table id="results" class="display" cellspacing="0" width="100%">
