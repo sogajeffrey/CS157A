@@ -1,6 +1,4 @@
 <?php
-session_start();
-	include("connect.php");
 	echo "<nav id=\"nav\" class=\"skel-layers-fixed\"><ul>";
     echo "<li class=\"current\"><a href=\"index.php\">Home</a></li>";
     echo "<li><a href=\"CheckingAccounts.php\">Monkey Checking</a></li>";

@@ -68,67 +68,100 @@
             <header> <?php echo "<h2> Welcome Manager $name </h2> " ?>
               <p>This is the manager portal.</p>
             </header>
-            <header> 
-            <h3> Run Different Queries here </h3>
+            <header>
+              <h3> Run Different Queries here </h3>
             </header>
             <form method=post action="queries.php">
-            <div class="row uniform half collapse-at-2">
-              <div class="10u">
-                <select name="Queries">
-                  <option value= "temp">Queries</option>
-                  <option value= "temp">Query 1</option>
-                  <option value= "temp">Query 2</option>
-                  <option value= "temp">Query 3</option>
-                  <option value= "temp">Query 4</option>
-                  <option value= "temp">Query 5</option>
-                  <option value= "temp">Query 6</option>
-                </select>
+              <div class="row uniform half collapse-at-2">
+                <div class="10u">
+                  <select name="Queries">
+                    <option value= "temp">Queries</option>
+                    <option value= "temp">Query 1</option>
+                    <option value= "temp">Query 2</option>
+                    <option value= "temp">Query 3</option>
+                    <option value= "temp">Query 4</option>
+                    <option value= "temp">Query 5</option>
+                    <option value= "temp">Query 6</option>
+                  </select>
+                </div>
+                <div class="2u">
+                  <input type="submit" value="Run" />
+                </div>
               </div>
-              <div class="2u">
-                <input type="submit" value="Run" />
-              </div>
-            </div>
             </form>
-            <header> 
-            <h3> Archive Users </h3>
-            <p> Archive Users who have been inactive since this day </p>
+            <header>
+              <h3> Archive Users </h3>
+              <p> Archive Users who have been inactive since this day </p>
             </header>
             <form method=post action="archive.php">
-            <div class="row uniform half collapse-at-4">
-              <div class="4u">
-              <select name="Month">
-                  <option value= "">Month</option>
-                  <option value= "1">January</option>
-                  <option value= "2">February</option>
-                  <option value= "3">March</option>
-                  <option value= "4">April</option>
-                  <option value= "5">May</option>
-                  <option value= "6">June</option>
-                  <option value= "7">July</option>
-                  <option value= "8">August</option>
-                  <option value= "9">September</option>
-                  <option value= "10">October</option>
-                  <option value= "11">November</option>
-                  <option value= "12">December</option>
-                </select>
+              <div class="row uniform half collapse-at-4">
+                <div class="4u">
+                  <select name="Month">
+                    <option value= "">Month</option>
+                    <option value= "1">January</option>
+                    <option value= "2">February</option>
+                    <option value= "3">March</option>
+                    <option value= "4">April</option>
+                    <option value= "5">May</option>
+                    <option value= "6">June</option>
+                    <option value= "7">July</option>
+                    <option value= "8">August</option>
+                    <option value= "9">September</option>
+                    <option value= "10">October</option>
+                    <option value= "11">November</option>
+                    <option value= "12">December</option>
+                  </select>
+                </div>
+                <div class="3u">
+                  <input type="text" name="day" placeholder="Day" />
+                </div>
+                <div class="3u">
+                  <input type="text" name="year" placeholder="Year" />
+                </div>
+                <div class="2u">
+                  <input type="submit" value="Archive" />
+                </div>
               </div>
-              <div class="3u">
-              <input type="text" name="day" placeholder="Day" />
-              </div>
-              <div class="3u">
-              <input type="text" name="year" placeholder="Year" />
-              </div>
-              <div class="2u">
-                <input type="submit" value="Archive" />
-              </div>
-            </div>
             </form>
-            <header> 
-            <h3> Other Actions </h3>
+            <header>
+              <h3> Customer Feedback </h3>
             </header>
-            <ul class="actions"> 
-              	<li><a href="viewcomplaints.php" class="button large">View All Complaints</a></li>
-                </ul>
+            <form method=post action="problemcustomers.php">
+              <div class="row uniform half collapse-at-2">
+                <div class="7u">
+                  <select name="number">
+                    <option value= "">Get the customers with this many feedbacks or complaints</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                                  
+                 </select>
+                </div>
+                <div class="5u">
+                  <input type="submit" value="Get Results" />
+                </div>
+              </div>
+            </form>
+            <ul class="actions">
+              <li><a href="viewcomplaints.php" class="button large">View All Feedback</a></li>
+            </ul>
           </article>
         </div>
       </div>

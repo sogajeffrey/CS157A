@@ -2,16 +2,10 @@
 session_start();
 $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
+include("connect.php");
 include("dbconnect.php");
 $type = $_GET['type'];
-$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '$aID' and type = '$type'")
-//$sql = $mysqli_query($conn2, "CALL getAccountActivity('13', 'Checking')");
-//$sql = $mysqli_prepare($conn2, 'CALL getAccountActivity(?,?)');
-//mysqli_stmt_bind_param($sql, 'is', 13, "Checking");
-//mysqli_stmt_execute($sql);
-//mysqli_stmt_close($sql);
-//$result = mysqli_get_result($sql);
-
+$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '$aID' and type = '$type'");
 ?><head>
 <title>Account Activity</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
