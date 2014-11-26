@@ -2,26 +2,21 @@
 	session_start();
 	if(isset($_POST["username"]))
 	{ 
-	$uID = $_POST['username'];
-	$password = $_POST['password'];
 	$message = "";
 	include("connect.php");
-	$result = mysql_query("SELECT uID, type FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+	//$result = mysql_query("SELECT uID, type FROM userinfo WHERE uID='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+	$result = mysql_query("CALL loginCustomer('" . $_POST["username"] . "', '". $_POST["password"]."')");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) {
 	$_SESSION["uID"] = $row[uID];
 	$_SESSION["type"] = $row[type];	
+	$_SESSION["aID"] = $row['accountID'];	
+
 	} 
 	if(!is_array($row)) 
 	{
 		$message = "Invalid Username or Password!";
 	}
-	$result = mysql_query("SELECT accountID FROM customer_account_link WHERE uID = '$uID'");
-	$row  = mysql_fetch_array($result);
-	if(is_array($row)) 
-	{
-		$_SESSION["aID"] = $row['accountID'];
-    }
 	}
 	if(isset($_SESSION["uID"])) 
 	{
