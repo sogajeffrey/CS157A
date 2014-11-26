@@ -41,7 +41,7 @@ include('connect.php');
   <div class="logo container">
     <div>
       <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
-      <p>by CS157A</p>
+      <p>by The Code Monkeys</p>
     </div>
   </div>
 </header>
@@ -74,18 +74,8 @@ include('connect.php');
 </section>
 
 <!-- Footer -->
-<footer id="footer">
-  <ul class="icons">
-    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-  </ul>
   <ul class="copyright">
-    <li>&copy; Untitled. All rights reserved.</li>
-    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>&copy; Code Monekys. All rights reserved.</li>
   </ul>
 </footer>
 </body>

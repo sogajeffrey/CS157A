@@ -3,8 +3,9 @@ session_start();
 $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("dbconnect.php");
-$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '$aID' and type = '$type'");
-?><head>
+$sql = mysqli_query($conn2, "SELECT userinfo.uID, userinfo.name, userinfo.email, userinfo.phoneNumber, message FROM userinfo, customercomplaints WHERE userinfo.uID = '$uID' and customercomplaints.uID = '$uID'");
+?>
+<head>
 <title>All Customer Feedback</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
@@ -27,7 +28,7 @@ $sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbala
   <div class="logo container">
     <div>
       <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
-      <p>by CS157A</p>
+      <p>by The Code Monkeys</p>
     </div>
   </div>
 </header>

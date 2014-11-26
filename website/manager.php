@@ -26,8 +26,7 @@
     }
 	
 			
-?>
-<head>
+?><head>
 <title>Manager Portal</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
@@ -37,6 +36,7 @@
 <script src="js/skel.min.js"></script>
 <script src="js/skel-layers.min.js"></script>
 <script src="js/init.js"></script>
+
 <noscript>
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/style.css" />
@@ -49,7 +49,7 @@
   <div class="logo container">
     <div>
       <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
-      <p>by CS157A</p>
+      <p>by The Code Monkeys</p>
     </div>
   </div>
 </header>
@@ -129,28 +129,28 @@
             <form method=post action="problemcustomers.php">
               <div class="row uniform half collapse-at-2">
                 <div class="7u">
-                  <select name="number">
+                  <select name="prob">
                     <option value= "">Get the customers with this many feedbacks or complaints</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
+                    <option value= "1">1</option>
+                    <option value= "2">2</option>
+                    <option value= "3">3</option>
+                    <option value= "4">4</option>
+                    <option value= "5">5</option>
+                    <option value= "6">6</option>
+                    <option value= "7">7</option>
+                    <option value= "8">8</option>
+                    <option value= "9">9</option>
+                    <option value= "10">10</option>
+                    <option value= "11">11</option>
+                    <option value= "12">12</option>
+                    <option value= "13">13</option>
+                    <option value= "14">14</option>
+                    <option value= "15">15</option>
+                    <option value= "16">16</option>
+                    <option value= "17">17</option>
+                    <option value= "18">18</option>
+                    <option value= "19">19</option>
+                    <option value= "20">20</option>
                                   
                  </select>
                 </div>

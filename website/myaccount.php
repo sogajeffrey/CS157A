@@ -53,7 +53,7 @@
   <div class="logo container">
     <div>
       <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
-      <p>by CS157A</p>
+      <p>by The Code Monkeys</p>
     </div>
   </div>
 </header>

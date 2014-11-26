@@ -53,7 +53,7 @@
   <div class="logo container">
     <div>
       <h1><a href="index.php" id="logo">The Monkey Bank of America</a></h1>
-      <p>by CS157A</p>
+      <p>by The Code Monkeys</p>
     </div>
   </div>
 </header>
@@ -129,8 +129,22 @@
 			}
 			if($loan == 0)
 			{
-			 echo "<ul class=\"actions\"> <li><a href=\"newloan.php\" class=\"button medium\">Take out a Loan</a></li></ul>";
-
+				echo "<header>";
+              echo "<h3>Take out a Monkey Loan</h3>";
+              echo "<p> Enter how much you want to take out and the loan due date</p>";
+            echo "</header>";
+			 echo "<form method=post action=\"loans.php\"> <div class=\"row uniform half collapse-at-4\">";
+                  echo "<div class=\"3u\"><input type=\"text\" name=\"amount\" placeholder=\"Loan Amount\" /></div>";
+				  echo "<div class=\"3u\"><select name=\"month\"><option value=\"\">Month</option>";
+                    echo "<option value=\"1\">January</option><option value=\"2\">February</option>";
+                    echo "<option value=\"3\">March</option><option value=\"4\">April</option>";
+                    echo "<option value=\"5\">May</option><option value=\"6\">June</option>";
+                    echo "<option value=\"7\">July</option><option value=\"8\">August</option>";
+                    echo "<option value=\"9\">September</option> <option value=\"10\">October</option>";
+                   echo " <option value=\"11\">November</option><option value=\"12\">December</option></select></div>";
+                echo "<div class=\"2u\"><input type=\"text\" name=\"day\" placeholder=\"Day\" /></div>";
+                echo "<div class=\"2u\"><input type=\"text\" name=\"year\" placeholder=\"Year\" /></div>";
+                echo "<div class=\"2u\"><input type=\"submit\" value=\"Take out a loan\"></div></div></form>";
 			}
 			
 			?>
