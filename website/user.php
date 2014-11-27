@@ -6,6 +6,10 @@
 	} 		
 	if(isset($_SESSION['uID'])) {
 		$uID = $_SESSION['uID'];
+		if($_SESSION['type'] =="Manager")
+		{
+			header("Location:manager.php");
+		}
 	} 
 	
 	$result = mysql_query("SELECT accountID, hasChecking, hasSavings, hasLoan FROM customer_account_link WHERE uID = '$uID'");
