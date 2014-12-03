@@ -3,9 +3,8 @@ session_start();
 $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("dbconnect.php");
-$sql = mysqli_query($conn2, "SELECT userinfo.uID, userinfo.name, userinfo.email, userinfo.phoneNumber, message FROM userinfo, customercomplaints WHERE userinfo.uID = '$uID' and customercomplaints.uID = '$uID'");
-?>
-<head>
+$sql = mysqli_query($conn2, "CALL getAllComplaints()");
+?><head>
 <title>All Customer Feedback</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
@@ -15,6 +14,7 @@ $sql = mysqli_query($conn2, "SELECT userinfo.uID, userinfo.name, userinfo.email,
 <script src="js/skel.min.js"></script>
 <script src="js/skel-layers.min.js"></script>
 <script src="js/init.js"></script>
+
 
 <noscript>
 <link rel="stylesheet" href="css/skel.css" />
@@ -43,7 +43,7 @@ $sql = mysqli_query($conn2, "SELECT userinfo.uID, userinfo.name, userinfo.email,
               <h2>All Monkey Bank of America Customer Feedback</h2>
             </header>
             <section id="main" class="container large">
-              <table id="results" class="display" cellspacing="3" width="100%">
+              <table style ="width:100%">
                 <thead>
                   <tr>
                     <th>Customer ID</th>

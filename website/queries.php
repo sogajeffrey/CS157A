@@ -4,8 +4,25 @@ $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("connect.php");
 include("dbconnect.php");
-$type = $_GET['type'];
-$sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbalance FROM accountactivity WHERE accountID = '$aID' and type = '$type'");
+if(isset($_POST['queries']))
+{
+	$qaction = $_POST['queries'];
+	if($qation = "Q1")
+	{
+		$sql = mysqli_query($conn2, "CALL getNetBalanceOfCustomers()");
+	}
+	if($qation = "Q2")
+	{
+		$sql = mysqli_query($conn2, "CALL  getProblemLoaners()");
+	}
+    
+}
+if(isset($_POST['ave_age_loan']))
+{
+	$qaction = "loanX";
+    $sql = mysqli_query($conn2, " CALL avgAgeUsersWithLoanOverXDollars('" . $_POST["ave_age_loan"] . "')");
+}
+
 ?><head>
 <title>Account Activity</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -40,35 +57,79 @@ $sql = mysqli_query($conn2, "SELECT transactiondate, actionDone, amount, newbala
       <div class="12u">
         <div class="content">
           <article class="box page-content">
-            <header>
-              <h2> Your <?php echo $type ?> Account Activity</h2>
-            </header>
-            <section id="main" class="container large">
-              <table id="results" class="display" cellspacing="0" width="100%">
-                <thead>
-                  <tr>
-                    <th>Transaction Date</th>
-                    <th>Action Done</a></th>
-                    <th>Amount</a></th>
-                    <th>New Balance</a></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
+            
+            <?php
+			if ($qaction = "Q1")
+			{
+				
+			echo "<header>";
+             echo " <h2> Here are the net balances of all customers!</h2>";
+            echo "</header>";
+			
+            echo "<section id='main' class='container large'>";
+              echo "<table style = 'width:100%'>";
+                echo "<thead>";
+                 echo " <tr>" ;
+                    echo "<th>Account ID</th>";
+                    echo "<th>Net Balance</a></th>";
+                  echo "</tr>";
+               echo " </thead>";
+               echo " <tbody>";
 
-	  while (list($date, $action, $amount, $new) = mysqli_fetch_array($sql))
-        {
-			print "<tr>";
-			echo "<td> $date </td>";
-			print "<td> $action </td>";
-			print "<td> $amount </td>";
-			print "<td> $new </td>";
-			print "</tr>";
-        }
-	  ?>
-                </tbody>
-              </table>
-            </section>
+	          while (list($id, $amount) = mysqli_fetch_array($sql))
+             {
+				echo "<tr>";
+				echo "<td> $id </td>";
+				echo "<td> $amount </td>";
+				echo "</tr>";
+       			 }
+	 			 
+                echo "</tbody>";
+             echo " </table>";
+            echo "</section>";
+			}
+			
+			else if ($qaction = "Q2")
+			{
+				
+			echo "<header>";
+             echo " <h2> Here are the problematic loaners!</h2> <p>These customers have loans geater than both their checking and savings balance combined!</p>";
+            echo "</header>";
+			
+            echo "<section id='main' class='container large'>";
+              echo "<table style = 'width:100%'>";
+                echo "<thead>";
+                 echo " <tr>" ;
+                    echo "<th>Account ID</th>";
+                    echo "<th>Net Balance</a></th>";
+					echo "<th>Loan Amount</a></th>";
+                  echo "</tr>";
+               echo " </thead>";
+               echo " <tbody>";
+
+	          while (list($id, $bal, $amt) = mysqli_fetch_array($sql))
+             {
+				echo "<tr>";
+				echo "<td> $id </td>";
+				echo "<td> $bal </td>";
+				echo "<td> $amt </td>";
+				echo "</tr>";
+       			 }
+	 			 
+                echo "</tbody>";
+             echo " </table>";
+            echo "</section>";
+			}
+			
+			else if ($qaction = "loanX")
+			{
+		     list($ave) = mysqli_fetch_array($sql);
+			 $lmt = $_POST['ave_age_loan'];
+		     echo "<header>";
+             echo " <h2> Average age of users with loans over $lmt Monkey Bucks</h2> <p>Average Age = $ave</p>";
+            echo "</header>";
+			}
+            ?>
           </article>
         </div>
       </div>

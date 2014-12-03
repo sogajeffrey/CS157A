@@ -76,9 +76,9 @@
                 <div class="10u">
                   <select name="queries">
                     <option value= "#">Queries</option>
-                    <option value= "getNetBalanceOfCustomers()">Get the Net Balance of All Customers (Checking and Savings Combined)</option>
-                    <option value= "getProblemLoaners()">Get all Customers who have loan amounts greater than their Checking and Savings </option>
-                    <option value= "temp">Query 3</option>
+                    <option value= "Q1">Get the Net Balance of All Customers (Checking and Savings Combined)</option>
+                    <option value= "Q2">Get all Customers who have loan amounts greater than their Checking and Savings </option>
+                    <option value= "Q3">Query 3</option>
                     <option value= "temp">Query 4</option>
                     <option value= "temp">Query 5</option>
                     <option value= "temp">Query 6</option>
@@ -93,7 +93,7 @@
             <form method=post action="queries.php">
               <div class="row uniform half collapse-at-2">
                 <div class="10u">
-                  <input type="text" name="amt" placeholder="Get the Average Age of all customers with loan over this amount" />
+                  <input type="text" name="ave_age_loan" placeholder="Get the Average Age of all customers with loan over this amount" />
                 </div>
                 <div class="2u">
                   <input type="submit" value="Run" />
@@ -102,8 +102,8 @@
             </form>
             <br>
             <header>
-              <h3> Archive Users </h3>
-              <p> Archive Users who have been inactive since this day </p>
+              <h3> Archive Activity Table Entries </h3>
+              <p> Archive entries older than this date. </p>
             </header>
             <form method=post action="archive.php">
               <div class="row uniform half collapse-at-4">

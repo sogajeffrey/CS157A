@@ -594,12 +594,12 @@ width: 100%;
 	
 		table
 		{
-			width: 50%;
+			width: 100%;
 		}
 		
 			table.default
 			{
-				width: 50%;
+				width: 100%;
 			}
 
 				table.default tr

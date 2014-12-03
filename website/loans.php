@@ -26,7 +26,6 @@
 	$row  = mysql_fetch_array($result);
 	if(is_array($row))
 	{
-		$aID = $row['accountID'];
 		$check = $row['hasChecking'];
 		$save = $row['hasSavings'];
 		$loan = $row['hasLoan'];
@@ -43,7 +42,7 @@
 
 		if($action = "ca")
 		{
-			$amount = $_POST['camt'];
+			$amount = $_POST['chamt'];
 			mysql_query("UPDATE loan SET amount = amount-$amount WHERE accountID = $aID");
 			header("Location:loans.php");
 		}
@@ -182,7 +181,6 @@
       </div>
     </form>
          <ul class="actions">
-        <li><a href="activitytable.php?type=Loan" class="button large">View Loan Activity</a></li>
          <li><a href="user.php" class="button large">Go Back to Account Overview</a></li></ul>
           </article>
         </div>
