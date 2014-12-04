@@ -4,6 +4,7 @@ $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("connect.php");
 include("dbconnect.php");
+$qaction = " ";
 if(isset($_POST['queries']))
 {
 	$qaction = $_POST['queries'];
