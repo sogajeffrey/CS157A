@@ -4,28 +4,8 @@ $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("connect.php");
 include("dbconnect.php");
-$qaction = " ";
-if(isset($_POST['queries']))
-{
-	$qaction = $_POST['queries'];
-	if($qation = "Q1")
-	{
-		$sql = mysqli_query($conn2, "CALL getNetBalanceOfCustomers()");
-	}
-	if($qation = "Q2")
-	{
-		$sql = mysqli_query($conn2, "CALL  getProblemLoaners()");
-	}
-    
-}
-if(isset($_POST['ave_age_loan']))
-{
-	$qaction = "loanX";
-    $sql = mysqli_query($conn2, " CALL avgAgeUsersWithLoanOverXDollars('" . $_POST["ave_age_loan"] . "')");
-}
-
 ?><head>
-<title>Account Activity</title>
+<title>Queries</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -60,28 +40,28 @@ if(isset($_POST['ave_age_loan']))
           <article class="box page-content">
             
             <?php
-			if ($qaction = "Q1")
+			if ($_GET['query'] == "netbal")
 			{
-				
+		    $sql = mysqli_query($conn2, " CALL getNetBalanceOfCustomers()");
 			echo "<header>";
-             echo " <h2> Here are the net balances of all customers!</h2>";
+             echo " <h2> Here are the net balances of all customers!</h2><p>The net balance is a combination of their savings and checking account balance </p>";
             echo "</header>";
 			
             echo "<section id='main' class='container large'>";
               echo "<table style = 'width:100%'>";
                 echo "<thead>";
                  echo " <tr>" ;
-                    echo "<th>Account ID</th>";
-                    echo "<th>Net Balance</a></th>";
+                    echo "<th><b>Account ID</b></th>";
+                    echo "<th><b>Net Balance</b></a></th>";
                   echo "</tr>";
                echo " </thead>";
                echo " <tbody>";
 
 	          while (list($id, $amount) = mysqli_fetch_array($sql))
              {
-				echo "<tr>";
+				echo "<tr  align='center'>";
 				echo "<td> $id </td>";
-				echo "<td> $amount </td>";
+				echo "<td> $amount Monkey Bucks</td>";
 				echo "</tr>";
        			 }
 	 			 
@@ -90,9 +70,9 @@ if(isset($_POST['ave_age_loan']))
             echo "</section>";
 			}
 			
-			else if ($qaction = "Q2")
+			else if ($_GET['query'] == "probloaners")
 			{
-				
+			$sql = mysqli_query($conn2, " CALL getProblemLoaners()");	
 			echo "<header>";
              echo " <h2> Here are the problematic loaners!</h2> <p>These customers have loans geater than both their checking and savings balance combined!</p>";
             echo "</header>";
@@ -101,19 +81,19 @@ if(isset($_POST['ave_age_loan']))
               echo "<table style = 'width:100%'>";
                 echo "<thead>";
                  echo " <tr>" ;
-                    echo "<th>Account ID</th>";
-                    echo "<th>Net Balance</a></th>";
-					echo "<th>Loan Amount</a></th>";
+                    echo "<th><b>Account ID</b></th>";
+                    echo "<th><b>Net Balance</b></th>";
+					echo "<th><b>Loan Amount</b></th>";
                   echo "</tr>";
                echo " </thead>";
                echo " <tbody>";
 
 	          while (list($id, $bal, $amt) = mysqli_fetch_array($sql))
              {
-				echo "<tr>";
+				echo "<tr align='center'>";
 				echo "<td> $id </td>";
-				echo "<td> $bal </td>";
-				echo "<td> $amt </td>";
+				echo "<td> $bal Monkey Bucks</td>";
+				echo "<td> $amt Monkey Bucks </td>";
 				echo "</tr>";
        			 }
 	 			 
@@ -121,14 +101,82 @@ if(isset($_POST['ave_age_loan']))
              echo " </table>";
             echo "</section>";
 			}
-			
-			else if ($qaction = "loanX")
+			else if ($_GET['query'] == "checkact")
 			{
-		     list($ave) = mysqli_fetch_array($sql);
-			 $lmt = $_POST['ave_age_loan'];
+			$sql = mysqli_query($conn2, " CALL getCheckingAccounts()");	
+			echo "<header>";
+             echo " <h2> Here is a list of all customers and their Checking Accounts </h2> <p>If Customers do not have a checking account then their value in the table will be blank</p>";
+            echo "</header>";
+			
+            echo "<section id='main' class='container large'>";
+              echo "<table style = 'width:100%'>";
+                echo "<thead>";
+                 echo " <tr>" ;
+                    echo "<th><b>Account ID</b></th>";
+                    echo "<th><b>Checking Account Number</b></th>";
+					echo "<th><b>Balance</b></th>";
+                  echo "</tr>";
+               echo " </thead>";
+               echo " <tbody>";
+
+	          while (list($id, $cid, $bal) = mysqli_fetch_array($sql))
+             {
+				echo "<tr align='center'>";
+				echo "<td> $id </td>";
+				echo "<td> $cid </td>";
+				echo "<td> $bal Monkey Bucks</td>";
+				echo "</tr>";
+       			 }
+	 			 
+                echo "</tbody>";
+             echo " </table>";
+            echo "</section>";
+			}
+			else if ($_GET['query'] == "aveage")
+			{
+			$sql = mysqli_query($conn2, " CALL  avgAgeUsersWithLoanOverXDollars('" . $_POST['loanamt'] . "')");
+			list($ave) = mysqli_fetch_array($sql);
+			$lmt = $_POST['loanamt'];
 		     echo "<header>";
              echo " <h2> Average age of users with loans over $lmt Monkey Bucks</h2> <p>Average Age = $ave</p>";
             echo "</header>";
+			}
+			else if ($_GET['query'] == "transac")
+			{
+			$month1 = $_POST['Month1'];
+			$day1 = $_POST['day1'];
+			$year1 = $_POST['year1'];
+			$date1 = "$year1-$month1-$day1";
+			$month2 = $_POST['Month2'];
+			$day2 = $_POST['day2'];
+			$year2 = $_POST['year2'];
+			$date2 = "$year2-$month2-$day2";
+		    $sql = mysqli_query($conn2, " CALL getNumberOfTransactions('" . $date1 . "', '" . $date2 . "')");
+			echo "<header>";
+             echo " <h2>Transaction Count Query</h2><p>Here are the number of transactions per account between $date1 and $date2</p>";
+            echo "</header>";
+			
+            echo "<section id='main' class='container large'>";
+              echo "<table style = 'width:100%'>";
+                echo "<thead>";
+                 echo " <tr>" ;
+                    echo "<th><b>Account ID</b></th>";
+                    echo "<th><b>Number of Transactions</b></a></th>";
+                  echo "</tr>";
+               echo " </thead>";
+               echo " <tbody>";
+
+	          while (list($id, $transactions) = mysqli_fetch_array($sql))
+             {
+				echo "<tr  align='center'>";
+				echo "<td> $id </td>";
+				echo "<td> $transactions</td>";
+				echo "</tr>";
+       			 }
+	 			 
+                echo "</tbody>";
+             echo " </table>";
+            echo "</section>";
 			}
             ?>
           </article>

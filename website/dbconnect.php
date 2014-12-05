@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "jeffreysu.ddns.net:3306";
 $username = "root";
 $password = "secret123";
 $dbname = "codemonkeys";

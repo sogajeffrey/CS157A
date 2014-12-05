@@ -52,8 +52,8 @@
           
           <article class="box page-content">
             <header> 
-			  <h2> Customer Feedback Query Results</h2>
-              <?php echo "<p>These are the customers that had $number feedback or more </p>"; ?>
+			  <h2> Customer Complaint Query Results</h2>
+              <?php echo "<p>These are the customers that had $number complaints or more </p>"; ?>
             </header>
             <?php					
 			while (list($uID, $name, $email, $phoneNumber, $num) = mysql_fetch_array($result))

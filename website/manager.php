@@ -73,16 +73,17 @@
             </header>
             <ul class="actions">
               <li><a href="queries.php?query=netbal" class="button large">Get the Net Balance of All Customers (Checking and Savings Combined)</a></li>
-              <br>
-              <li><a href="queries.php?query=loangreat" class="button large">Get all Customers who have loan amounts greater than their Checking and Savings</a></li>
+              <li><a href="queries.php?query=probloaners" class="button large">Get all Customers who have loan amounts greater than their Checking and Savings</a></li>
+              <li><a href="queries.php?query=checkact" class="button large">Get all Customers checking account ID and balance</a></li>
+
             </ul>
             <br>
-            <form method=post action="loanquery.php">
+            <form method=post action="queries.php?query=aveage">
               <div class="row uniform half collapse-at-2">
-                <div class="10u">
-                  <input type="text" name="ave_age_loan" placeholder="Get the Average Age of all customers with loan over this amount" />
+                <div class="8u">
+                  <input type="text" name="loanamt" placeholder="Get the Average Age of all customers with loan over this amount" />
                 </div>
-                <div class="2u">
+                <div class="4u">
                   <input type="submit" value="Run" />
                 </div>
               </div>
@@ -92,9 +93,9 @@
               <h3> Transaction Count Query </h3>
               <p> Get the Number of Transactions (Depositing and Withdrawing in savings/checking that occured between these days. </p>
             </header>
-            <form method=post action="traanscount.php">
-              <div class="row uniform half collapse-at-3">
-                <div class="4u">
+            <form method=post action="queries.php?query=transac">
+              <div class="row uniform half collapse-at-6">
+                <div class="2u">
                   <select name="Month1">
                     <option value= "">Month</option>
                     <option value= "1">January</option>
@@ -111,15 +112,14 @@
                     <option value= "12">December</option>
                   </select>
                 </div>
-                <div class="4u">
+                <div class="2u">
                   <input type="text" name="day1" placeholder="Day" />
                 </div>
-                <div class="4u">
+                <div class="2u">
                   <input type="text" name="year1" placeholder="Year" />
                 </div>
-              </div>
-              <div class="row uniform half collapse-at-3">
-                <div class="4u">
+              
+                <div class="2u">
                   <select name="Month2">
                     <option value= "">Month</option>
                     <option value= "1">January</option>
@@ -136,15 +136,15 @@
                     <option value= "12">December</option>
                   </select>
                 </div>
-                <div class="4u">
+                <div class="2u">
                   <input type="text" name="day2" placeholder="Day" />
                 </div>
-                <div class="4u">
+                <div class="2u">
                   <input type="text" name="year2" placeholder="Year" />
                 </div>
               </div>
-              <div class="2u">
-                  <input type="submit" value="Archive" />
+              <div class="4u">
+                  <input type="submit" value="Run Query" />
                 </div>
               
             </form>

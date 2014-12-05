@@ -4,13 +4,15 @@ $uID = $_SESSION['uID'];
 $aID = $_SESSION['aID'];
 include("connect.php");
 include("dbconnect.php");
-if(isset($_POST['ave_age_loan']))
-{
-    $sql = mysqli_query($conn2, " CALL avgAgeUsersWithLoanOverXDollars('" . $_POST["ave_age_loan"] . "')");
-}
+$month = $_POST['Month'];
+$day = $_POST['day'];
+$year = $_POST['year'];
+$date = "$year-$month-$day";
+mysql_query("CALL archiveActivity('" . $date . "')");
+?>
 
-?><head>
-<title>Account Activity</title>
+<head>
+<title>Archive Done</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -43,15 +45,12 @@ if(isset($_POST['ave_age_loan']))
       <div class="12u">
         <div class="content">
           <article class="box page-content">
-            
-            <?php
-		     list($ave) = mysqli_fetch_array($sql);
-			 $lmt = $_POST['ave_age_loan'];
-		     echo "<header>";
-             echo " <h2> Average age of users with loans over $lmt Monkey Bucks</h2> <p>Average Age = $ave</p>";
-            echo "</header>";
-			
-            ?>
+            <header>
+            <h2>Archive Complete! </h2>
+            </header>
+             <ul class="actions">
+              <li><a href="manager.php" class="button large">Click to go Back</a></li>
+            </ul> 
           </article>
         </div>
       </div>
