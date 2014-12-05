@@ -71,26 +71,13 @@
             <header>
               <h3> Run Different Queries here </h3>
             </header>
-            <form method=post action="queries.php">
-              <div class="row uniform half collapse-at-2">
-                <div class="10u">
-                  <select name="queries">
-                    <option value= "#">Queries</option>
-                    <option value= "Q1">Get the Net Balance of All Customers (Checking and Savings Combined)</option>
-                    <option value= "Q2">Get all Customers who have loan amounts greater than their Checking and Savings </option>
-                    <option value= "Q3">Query 3</option>
-                    <option value= "temp">Query 4</option>
-                    <option value= "temp">Query 5</option>
-                    <option value= "temp">Query 6</option>
-                  </select>
-                </div>
-                <div class="2u">
-                  <input type="submit" value="Run" />
-                </div>
-              </div>
-            </form>
+            <ul class="actions">
+              <li><a href="queries.php?query=netbal" class="button large">Get the Net Balance of All Customers (Checking and Savings Combined)</a></li>
+              <br>
+              <li><a href="queries.php?query=loangreat" class="button large">Get all Customers who have loan amounts greater than their Checking and Savings</a></li>
+            </ul>
             <br>
-            <form method=post action="queries.php">
+            <form method=post action="loanquery.php">
               <div class="row uniform half collapse-at-2">
                 <div class="10u">
                   <input type="text" name="ave_age_loan" placeholder="Get the Average Age of all customers with loan over this amount" />
@@ -99,6 +86,67 @@
                   <input type="submit" value="Run" />
                 </div>
               </div>
+            </form>
+            <br>
+            <header>
+              <h3> Transaction Count Query </h3>
+              <p> Get the Number of Transactions (Depositing and Withdrawing in savings/checking that occured between these days. </p>
+            </header>
+            <form method=post action="traanscount.php">
+              <div class="row uniform half collapse-at-3">
+                <div class="4u">
+                  <select name="Month1">
+                    <option value= "">Month</option>
+                    <option value= "1">January</option>
+                    <option value= "2">February</option>
+                    <option value= "3">March</option>
+                    <option value= "4">April</option>
+                    <option value= "5">May</option>
+                    <option value= "6">June</option>
+                    <option value= "7">July</option>
+                    <option value= "8">August</option>
+                    <option value= "9">September</option>
+                    <option value= "10">October</option>
+                    <option value= "11">November</option>
+                    <option value= "12">December</option>
+                  </select>
+                </div>
+                <div class="4u">
+                  <input type="text" name="day1" placeholder="Day" />
+                </div>
+                <div class="4u">
+                  <input type="text" name="year1" placeholder="Year" />
+                </div>
+              </div>
+              <div class="row uniform half collapse-at-3">
+                <div class="4u">
+                  <select name="Month2">
+                    <option value= "">Month</option>
+                    <option value= "1">January</option>
+                    <option value= "2">February</option>
+                    <option value= "3">March</option>
+                    <option value= "4">April</option>
+                    <option value= "5">May</option>
+                    <option value= "6">June</option>
+                    <option value= "7">July</option>
+                    <option value= "8">August</option>
+                    <option value= "9">September</option>
+                    <option value= "10">October</option>
+                    <option value= "11">November</option>
+                    <option value= "12">December</option>
+                  </select>
+                </div>
+                <div class="4u">
+                  <input type="text" name="day2" placeholder="Day" />
+                </div>
+                <div class="4u">
+                  <input type="text" name="year2" placeholder="Year" />
+                </div>
+              </div>
+              <div class="2u">
+                  <input type="submit" value="Archive" />
+                </div>
+              
             </form>
             <br>
             <header>
@@ -162,8 +210,7 @@
                     <option value= "17">17</option>
                     <option value= "18">18</option>
                     <option value= "19">19</option>
-                    <option value= "20">20</option>
-                                  
+                    <option value= "20">20</option>             
                  </select>
                 </div>
                 <div class="5u">
